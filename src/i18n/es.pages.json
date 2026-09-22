@@ -1,0 +1,636 @@
+{
+  "status": "proposal",
+  "chrome": {
+    "skip": "Saltar al contenido",
+    "brandAria": "MAHAS MASSAGE, inicio",
+    "navAria": "Principal",
+    "menu": {
+      "open": "Menú",
+      "close": "Cerrar menú"
+    },
+    "nav": {
+      "home": "Inicio",
+      "experiences": "Experiencias",
+      "experience": "La experiencia",
+      "about": "Quiénes somos",
+      "service": "Domicilio & Hoteles",
+      "contact": "Contacto"
+    },
+    "langSwitch": {
+      "code": "EN",
+      "lang": "en",
+      "aria": "EN, English"
+    },
+    "cta": {
+      "book": "Reservar experiencia",
+      "bookShort": "Reservar",
+      "discoverExperience": "Descubrir la experiencia",
+      "exploreExperiences": "Explorar experiencias",
+      "checkAvailability": "Consultar disponibilidad",
+      "whatsapp": "Escribir por WhatsApp"
+    },
+    "media": {
+      "photo": "Fotografía",
+      "pending": "pendiente"
+    },
+    "catalog": {
+      "cta": "Conocer experiencia",
+      "pendingLabel": "Pendiente",
+      "pendingText": "Descripción pendiente de aprobación."
+    },
+    "closing": {
+      "title": "Tu momento, a tu ritmo",
+      "lead": "Elige una experiencia y da el primer paso."
+    },
+    "footer": {
+      "tag": "MASSAGE • WELLNESS • EXPERIENCES",
+      "place": "Mazatlán, Sinaloa, México",
+      "navAria": "Pie de página",
+      "exploreTitle": "Explorar",
+      "channelsTitle": "Canales",
+      "links": [
+        {
+          "to": "experiences",
+          "label": "@nav.experiences"
+        },
+        {
+          "to": "experience",
+          "label": "@nav.experience"
+        },
+        {
+          "to": "about",
+          "label": "@nav.about"
+        },
+        {
+          "to": "service",
+          "label": "@nav.service"
+        },
+        {
+          "to": "booking",
+          "label": "@cta.bookShort",
+          "booking": true
+        },
+        {
+          "to": "contact",
+          "label": "@nav.contact"
+        }
+      ],
+      "channels": [
+        {
+          "channel": "whatsapp",
+          "label": "WhatsApp"
+        },
+        {
+          "channel": "instagram",
+          "label": "Instagram"
+        },
+        {
+          "channel": "facebook",
+          "label": "Facebook"
+        }
+      ],
+      "privacy": "Aviso de privacidad",
+      "terms": "Términos y condiciones",
+      "rights": "MAHAS MASSAGE"
+    },
+    "pricing": {
+      "title": "Duración y precio",
+      "durationLabel": "Duración",
+      "priceLabel": "Precio",
+      "note": "Precios sujetos a cambio sin previo aviso.",
+      "perPerson": "Por persona",
+      "perCouple": "Por pareja"
+    }
+  },
+  "meta": {
+    "about": {
+      "title": "Quiénes somos · MAHAS MASSAGE",
+      "description": "Conoce la visión de MAHAS MASSAGE: espacios para detener el ritmo y volver a ti mediante experiencias de bienestar cuidadas, en Mazatlán."
+    },
+    "experience": {
+      "title": "La experiencia · MAHAS MASSAGE",
+      "description": "Espacio, aromas, música, presencia y hospitalidad: descubre cómo se vive una experiencia MAHAS en Mazatlán."
+    },
+    "experiences": {
+      "title": "Experiencias MAHAS · MAHAS MASSAGE",
+      "description": "Explora las experiencias MAHAS: masaje, bienestar y trabajo corporal pensados para volver a ti, en Mazatlán."
+    },
+    "service": {
+      "title": "Domicilio & Hoteles · MAHAS MASSAGE",
+      "description": "Servicio a domicilio y atención en hoteles en Mazatlán, sujeto a disponibilidad y condiciones de servicio. Consulta disponibilidad con MAHAS."
+    },
+    "booking": {
+      "title": "Reservar experiencia · MAHAS MASSAGE",
+      "description": "Reserva tu experiencia MAHAS en Mazatlán. Elige la experiencia y solicita tu momento; MAHAS confirma la disponibilidad contigo."
+    },
+    "contact": {
+      "title": "Contacto · MAHAS MASSAGE",
+      "description": "Contacta a MAHAS MASSAGE en Mazatlán por WhatsApp, Instagram, Facebook, correo o teléfono."
+    },
+    "privacy": {
+      "title": "Aviso de privacidad · MAHAS MASSAGE",
+      "description": "Aviso de privacidad de MAHAS MASSAGE. Documento en preparación."
+    },
+    "terms": {
+      "title": "Términos y condiciones · MAHAS MASSAGE",
+      "description": "Términos y condiciones de MAHAS MASSAGE. Documento en preparación."
+    },
+    "exp-relax": {
+      "title": "Relax · Experiencias MAHAS · MAHAS MASSAGE",
+      "description": "Relax: un masaje pausado para detener el ritmo y volver a ti. Duración, precio y cómo se vive, en Mazatlán."
+    },
+    "exp-deep": {
+      "title": "MAHAS DEEP · Descontracturante · MAHAS MASSAGE",
+      "description": "MAHAS DEEP · Descontracturante: trabajo corporal profundo con presión firme y atención al detalle, en Mazatlán."
+    },
+    "exp-4hands": {
+      "title": "4 Hands · Experiencias MAHAS · MAHAS MASSAGE",
+      "description": "4 Hands: dos terapeutas trabajan de manera sincronizada para crear una percepción corporal diferente, en Mazatlán."
+    },
+    "exp-couples": {
+      "title": "Couples · Experiencias MAHAS · MAHAS MASSAGE",
+      "description": "Couples: una experiencia para dos, cada terapeuta atiende a una persona de la pareja al mismo tiempo, en Mazatlán."
+    }
+  },
+  "pages": {
+    "about": {
+      "status": "proposal",
+      "blocks": [
+        {
+          "type": "intro",
+          "theme": "dark",
+          "title": "@nav.about",
+          "lead": "Personas, espacio y presencia."
+        },
+        {
+          "type": "text",
+          "theme": "light",
+          "title": "Nuestra visión",
+          "small": true,
+          "lead": "Crear espacios donde las personas puedan detener el ritmo de su vida y volver a conectar consigo mismas mediante experiencias de bienestar cuidadosamente diseñadas."
+        },
+        {
+          "type": "split",
+          "theme": "dark",
+          "layout": "reverse",
+          "media": {
+            "label": "equipo",
+            "ratio": "4x5"
+          },
+          "title": "Las personas detrás de MAHAS",
+          "text": [
+            "Cada experiencia está acompañada por personas que cuidan el detalle, reciben con calidez y ofrecen atención personalizada."
+          ]
+        },
+        {
+          "type": "placeholder",
+          "note": "TODO presentacion de fundadores y terapeutas. Requiere fotografias y biografias aprobadas. No publicar certificaciones, titulos, anos de experiencia ni historias personales sin fuente oficial."
+        },
+        {
+          "type": "text",
+          "theme": "light",
+          "title": "Cómo entendemos la experiencia",
+          "small": true,
+          "lead": "Una experiencia cuidada de principio a fin.",
+          "text": [
+            "El entorno, la sensorialidad y el trabajo corporal se perciben como un conjunto."
+          ],
+          "actions": [
+            {
+              "style": "link",
+              "label": "discoverExperience",
+              "to": "experience"
+            }
+          ]
+        },
+        {
+          "type": "list",
+          "theme": "dark",
+          "title": "Nuestros principios",
+          "items": [
+            "Presencia. Nada debe sentirse apresurado.",
+            "Sobriedad. Calidad por selección y detalle.",
+            "Sensorialidad. Una experiencia que se imagina y se percibe.",
+            "Hospitalidad. Recibir e invitar, nunca presionar.",
+            "Naturalidad. Materiales, luz e imagen en armonía.",
+            "Precisión. Cada palabra y cada detalle tienen una función."
+          ]
+        },
+        {
+          "type": "closing",
+          "secondary": {
+            "label": "exploreExperiences",
+            "to": "experiences"
+          }
+        }
+      ]
+    },
+    "experience": {
+      "status": "proposal",
+      "blocks": [
+        {
+          "type": "intro",
+          "theme": "dark",
+          "title": "@nav.experience",
+          "lead": "Cuidamos todo lo que rodea al masaje."
+        },
+        {
+          "type": "split",
+          "theme": "light",
+          "media": {
+            "label": "atmósfera",
+            "ratio": "4x5"
+          },
+          "title": "Cómo se vive MAHAS",
+          "text": [
+            "MAHAS cuida el espacio, los aromas, la música y la presencia para que la pausa comience antes que el masaje."
+          ]
+        },
+        {
+          "type": "cards",
+          "theme": "raised",
+          "title": "Lo que cuidamos",
+          "items": [
+            {
+              "name": "Espacio",
+              "text": "Un lugar pensado para que el ritmo baje al entrar."
+            },
+            {
+              "name": "Aromas",
+              "text": "Una atmósfera cuidadosamente preparada."
+            },
+            {
+              "name": "Música",
+              "text": "Un entorno sonoro pensado para acompañar la pausa."
+            },
+            {
+              "name": "Presencia",
+              "text": "Atención plena al momento y a la persona."
+            },
+            {
+              "name": "Contacto",
+              "text": "Un trabajo corporal atento, respetuoso y sin prisa."
+            },
+            {
+              "name": "Hospitalidad",
+              "text": "Cada detalle importa."
+            }
+          ]
+        },
+        {
+          "type": "closing",
+          "secondary": {
+            "label": "exploreExperiences",
+            "to": "experiences"
+          }
+        }
+      ]
+    },
+    "experiences": {
+      "status": "proposal",
+      "blocks": [
+        {
+          "type": "intro",
+          "theme": "dark",
+          "title": "@nav.experiences",
+          "lead": "Elige la pausa que necesitas.",
+          "text": [
+            "Cada experiencia parte de una misma idea: presencia, hospitalidad y trabajo corporal cuidado.",
+            "Estamos afinando el catálogo. Aquí verás los detalles de cada experiencia cuando estén listos."
+          ]
+        },
+        {
+          "type": "catalog",
+          "theme": "light",
+          "aria": "@nav.experiences"
+        },
+        {
+          "type": "text",
+          "theme": "raised",
+          "title": "Couples y 4 Hands, dos experiencias distintas",
+          "small": true,
+          "text": [
+            "Couples es para dos personas: cada terapeuta atiende al mismo tiempo a una de ellas. 4 Hands es una experiencia distinta, basada en el trabajo coordinado de dos terapeutas."
+          ]
+        },
+        {
+          "type": "closing"
+        }
+      ]
+    },
+    "service": {
+      "status": "proposal",
+      "blocks": [
+        {
+          "type": "intro",
+          "theme": "dark",
+          "title": "@nav.service",
+          "lead": "La pausa también puede ocurrir donde tú estés."
+        },
+        {
+          "type": "split",
+          "theme": "light",
+          "layout": "wide",
+          "media": {
+            "label": "fuera de cabina",
+            "ratio": "4x3"
+          },
+          "title": "Formas de recibir MAHAS",
+          "text": [
+            "Cada solicitud se revisa para confirmar disponibilidad y condiciones."
+          ],
+          "items": [
+            "Domicilio",
+            "Hoteles"
+          ]
+        },
+        {
+          "type": "list",
+          "theme": "dark",
+          "title": "Qué puedes esperar",
+          "items": [
+            "MAHAS se desplaza hasta ti.",
+            "Llevamos elementos portátiles adecuados para el servicio.",
+            "Hay una preparación previa antes de llegar.",
+            "La disponibilidad depende de la ubicación y el horario.",
+            "Algunas solicitudes requieren confirmación."
+          ]
+        },
+        {
+          "type": "list",
+          "theme": "raised",
+          "title": "Cómo funciona una solicitud",
+          "text": [
+            "No es una reserva automática: cada solicitud se revisa antes de confirmarse."
+          ],
+          "items": [
+            "Solicitud",
+            "Datos básicos",
+            "Revisión de disponibilidad",
+            "Confirmación"
+          ]
+        },
+        {
+          "type": "closing",
+          "title": "Consulta la disponibilidad",
+          "lead": "Indícanos dónde y cuándo, y lo revisamos contigo.",
+          "primary": {
+            "label": "checkAvailability",
+            "to": "booking"
+          }
+        }
+      ]
+    },
+    "booking": {
+      "status": "proposal",
+      "sticky": false,
+      "blocks": [
+        {
+          "type": "intro",
+          "theme": "dark",
+          "title": "@cta.book",
+          "lead": "Un primer paso, sin prisa.",
+          "text": [
+            "Cuéntanos qué experiencia buscas y cuándo. MAHAS confirma la disponibilidad contigo."
+          ]
+        },
+        {
+          "type": "list",
+          "theme": "light",
+          "title": "Cómo funciona",
+          "text": [
+            "Una reserva no está confirmada hasta que MAHAS la confirma."
+          ],
+          "items": [
+            "Elige tu experiencia",
+            "Elige cómo quieres recibirla",
+            "Indica fecha y hora",
+            "Solicita tu reserva",
+            "Recibe la confirmación"
+          ]
+        },
+        {
+          "type": "slot",
+          "name": "booking-form",
+          "note": "TODO chat 6: montar aqui BookingForm conectado a BookingService y ReservationProvider. El frontend nunca decide disponibilidad real. Estados posibles: IDLE, SELECTING, SUBMITTING, PENDING, CONFIRMED, REQUIRES_HUMAN_REVIEW, ERROR, CANCELLED."
+        },
+        {
+          "type": "text",
+          "theme": "dark",
+          "title": "Reserva por mensaje",
+          "small": true,
+          "lead": "Mientras activamos la reserva en línea, escríbenos y te ayudamos a elegir.",
+          "text": [
+            "Hoteles, domicilios, grupos o solicitudes especiales se revisan de forma personal. La disponibilidad siempre la confirma MAHAS."
+          ],
+          "actions": [
+            {
+              "style": "secondary",
+              "label": "whatsapp",
+              "channel": "whatsapp"
+            }
+          ]
+        }
+      ]
+    },
+    "contact": {
+      "status": "proposal",
+      "blocks": [
+        {
+          "type": "intro",
+          "theme": "dark",
+          "title": "@nav.contact",
+          "lead": "Escríbenos, con gusto te acompañamos.",
+          "text": [
+            "@footer.place"
+          ]
+        },
+        {
+          "type": "channels",
+          "theme": "raised",
+          "title": "Canales",
+          "text": [
+            "Para resolver dudas o preparar tu experiencia. La disponibilidad siempre la confirma MAHAS."
+          ],
+          "items": [
+            {
+              "channel": "whatsapp",
+              "label": "WhatsApp"
+            },
+            {
+              "channel": "instagram",
+              "label": "Instagram"
+            },
+            {
+              "channel": "facebook",
+              "label": "Facebook"
+            },
+            {
+              "channel": "email"
+            },
+            {
+              "channel": "phone"
+            }
+          ]
+        },
+        {
+          "type": "closing"
+        }
+      ]
+    },
+    "privacy": {
+      "status": "proposal",
+      "sticky": false,
+      "blocks": [
+        {
+          "type": "intro",
+          "theme": "dark",
+          "title": "@footer.privacy",
+          "lead": "Documento en preparación.",
+          "text": [
+            "El texto definitivo se incorporará cuando esté validado por la fuente legal correspondiente."
+          ]
+        },
+        {
+          "type": "placeholder",
+          "note": "TODO aviso de privacidad. El texto definitivo debe venir de la fuente legal aprobada. No inventar ni presentar como definitivo."
+        }
+      ]
+    },
+    "terms": {
+      "status": "proposal",
+      "sticky": false,
+      "blocks": [
+        {
+          "type": "intro",
+          "theme": "dark",
+          "title": "@footer.terms",
+          "lead": "Documento en preparación.",
+          "text": [
+            "El texto definitivo se incorporará cuando esté validado por la fuente legal correspondiente."
+          ]
+        },
+        {
+          "type": "placeholder",
+          "note": "TODO terminos y condiciones. Incluye politicas de cancelacion y condiciones de reserva pendientes de validacion legal y operativa. No inventar ni presentar como definitivo."
+        }
+      ]
+    },
+    "exp-relax": {
+      "status": "proposal",
+      "blocks": [
+        {
+          "type": "intro",
+          "theme": "dark",
+          "fromExperience": true
+        },
+        {
+          "type": "placeholder",
+          "note": "TODO: que incluye esta experiencia. Pendiente de aprobacion operativa. No inventar contenido."
+        },
+        {
+          "type": "text",
+          "theme": "light",
+          "title": "Cómo se vive",
+          "small": true,
+          "lead": "El ritmo baja desde el primer minuto. Un masaje lento, sin prisa, pensado para que sueltes lo que traes cargando."
+        },
+        {
+          "type": "pricing",
+          "theme": "raised",
+          "fromExperience": true
+        },
+        {
+          "type": "closing"
+        }
+      ]
+    },
+    "exp-deep": {
+      "status": "proposal",
+      "blocks": [
+        {
+          "type": "intro",
+          "theme": "dark",
+          "fromExperience": true
+        },
+        {
+          "type": "placeholder",
+          "note": "TODO: que incluye esta experiencia. Pendiente de aprobacion operativa. No inventar contenido."
+        },
+        {
+          "type": "text",
+          "theme": "light",
+          "title": "Cómo se vive",
+          "small": true,
+          "lead": "Presión firme y constante, con atención a cada zona. Un trabajo profundo que no deja de sentirse cuidado."
+        },
+        {
+          "type": "pricing",
+          "theme": "raised",
+          "fromExperience": true
+        },
+        {
+          "type": "closing"
+        }
+      ]
+    },
+    "exp-4hands": {
+      "status": "proposal",
+      "blocks": [
+        {
+          "type": "intro",
+          "theme": "dark",
+          "fromExperience": true
+        },
+        {
+          "type": "placeholder",
+          "note": "TODO: que incluye esta experiencia. Pendiente de aprobacion operativa. No inventar contenido."
+        },
+        {
+          "type": "text",
+          "theme": "light",
+          "title": "Cómo se vive",
+          "small": true,
+          "lead": "Dos terapeutas se mueven al mismo tiempo, con un ritmo coordinado. El cuerpo percibe la experiencia de una forma distinta."
+        },
+        {
+          "type": "pricing",
+          "theme": "raised",
+          "fromExperience": true
+        },
+        {
+          "type": "closing"
+        }
+      ]
+    },
+    "exp-couples": {
+      "status": "proposal",
+      "blocks": [
+        {
+          "type": "intro",
+          "theme": "dark",
+          "fromExperience": true
+        },
+        {
+          "type": "placeholder",
+          "note": "TODO: que incluye esta experiencia. Pendiente de aprobacion operativa. No inventar contenido."
+        },
+        {
+          "type": "text",
+          "theme": "light",
+          "title": "Cómo se vive",
+          "small": true,
+          "lead": "Dos camillas, un mismo espacio. Cada persona recibe su propio masaje, al mismo tiempo, en un momento compartido."
+        },
+        {
+          "type": "pricing",
+          "theme": "raised",
+          "fromExperience": true
+        },
+        {
+          "type": "closing"
+        }
+      ]
+    }
+  }
+}

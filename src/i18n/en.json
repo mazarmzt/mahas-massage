@@ -1,0 +1,19 @@
+{
+  "site": {
+    "name": "MAHAS MASSAGE",
+    "ogImageAlt": "MAHAS MASSAGE, massage and wellness in Mazatlán"
+  },
+  "business": {
+    "description": "Massage and wellness experiences in Mazatlán, Sinaloa: presence, aromas, music and hospitality designed to bring you back to yourself."
+  },
+  "pages": {
+    "home": {
+      "title": "MAHAS MASSAGE · Massage & Wellness in Mazatlán",
+      "description": "A wellness experience built on presence in Mazatlán. Massage, aromas, music and hospitality designed to bring you back to yourself. Book your experience."
+    }
+  },
+  "schema": {
+    "catalogName": "MAHAS Experiences",
+    "perCouple": "Price per couple"
+  }
+}

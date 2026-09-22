@@ -1,0 +1,24 @@
+{
+  // Worker de MAHAS MASSAGE. Los archivos de public/ se sirven por el binding ASSETS.
+  // run_worker_first en true hace que el Worker atienda toda peticion antes que los estaticos,
+  // necesario para inyectar el head en la Home y para redirigir la raiz por idioma.
+  "name": "mahas-massage",
+  "main": "src/worker.js",
+  "compatibility_date": "2025-09-01",
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS",
+    "run_worker_first": true
+  },
+  "vars": {
+    // Dominio canonico usado en canonical, hreflang, Open Graph y sitemaps
+    "SITE_URL": "https://mahasmassage.com",
+    // Solo el valor true permite indexar. Dejar en false hasta el lanzamiento
+    "INDEXABLE": "false",
+    // El valor false retira los precios del Schema.org. Cliente aprobo el catalogo
+    // y sus precios el 2026-09-21; se activa en true
+    "SCHEMA_INCLUDE_PRICES": "true"
+  },
+  "observability": { "enabled": true }
+  // TODO chat 4: agregar aqui el binding de KV para el catalogo y las reservas
+}

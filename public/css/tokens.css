@@ -1,0 +1,59 @@
+/* ==========================================================================
+   MAHAS MASSAGE · tokens de diseño · V0.1
+   Fuente de verdad visual del frontend. Todo el CSS consume estas variables.
+   ========================================================================== */
+
+:root {
+  /* PROPUESTA Brand Book V0.9. No son codigos oficiales aprobados.
+     Cuando el Brand Book los apruebe, se cambian solo aqui. */
+  --color-obsidian: #171614; /* PROPUESTA */
+  --color-arena: #B79A68;    /* PROPUESTA */
+  --color-marfil: #F2EEE5;   /* PROPUESTA */
+  --color-salvia: #A5AA91;   /* PROPUESTA */
+
+  /* Tipografia del sistema: titulares, etiquetas y lectura */
+  --font-display: "Cormorant Garamond", "Cormorant", Georgia, "Times New Roman", serif;
+  --font-label: "Cinzel", "Trajan Pro", Georgia, serif;
+  --font-body: "Manrope", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  /* Ritmo y movimiento */
+  --ease: cubic-bezier(0.22, 0.7, 0.2, 1);
+  --gutter: clamp(1.5rem, 6vw, 3rem);
+  --space-section: clamp(5.5rem, 15vw, 10.5rem);
+  --header-h: 4.25rem;
+  --measure: 34rem;
+
+  /* Tema oscuro por defecto (Obsidian sobre Marfil) */
+  --bg: var(--color-obsidian);
+  --fg: var(--color-marfil);
+  --fg-muted: color-mix(in srgb, var(--color-marfil) 70%, transparent);
+  --accent-text: var(--color-arena);
+  --eyebrow: var(--color-salvia);
+  --line: color-mix(in srgb, var(--color-arena) 40%, transparent);
+  --line-strong: var(--color-arena);
+  --ph-bg: color-mix(in srgb, var(--color-arena) 9%, var(--color-obsidian));
+  --focus: var(--color-arena);
+  --btn-p-sweep: var(--color-marfil);
+  --btn-p-hover-fg: var(--color-obsidian);
+}
+
+/* Tema claro: secciones sobre Marfil */
+.theme-light {
+  --bg: var(--color-marfil);
+  --fg: var(--color-obsidian);
+  --fg-muted: color-mix(in srgb, var(--color-obsidian) 72%, transparent);
+  --accent-text: var(--color-obsidian);
+  --eyebrow: color-mix(in srgb, var(--color-obsidian) 72%, transparent);
+  --line: color-mix(in srgb, var(--color-arena) 65%, transparent);
+  --line-strong: var(--color-obsidian);
+  --ph-bg: color-mix(in srgb, var(--color-arena) 16%, var(--color-marfil));
+  --focus: var(--color-obsidian);
+  --btn-p-sweep: var(--color-obsidian);
+  --btn-p-hover-fg: var(--color-marfil);
+}
+
+/* Tema oscuro elevado: una capa apenas mas clara que Obsidian */
+.theme-raised {
+  --bg: color-mix(in srgb, var(--color-marfil) 5%, var(--color-obsidian));
+  --ph-bg: color-mix(in srgb, var(--color-arena) 12%, var(--color-obsidian));
+}
