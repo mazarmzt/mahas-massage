@@ -1,4 +1,4 @@
-// Renderizador de paginas interiores de MAHAS MASSAGE, chat 3.
+// Renderizador de paginas interiores de MAHAS MASSAGE, chats 3 y 6.
 // Recibe el contenido en bloques desde los JSON de i18n y devuelve el HTML completo.
 // Reutiliza solo las clases de css/styles.css y el comportamiento de js/main.js:
 // menu movil, boton fijo de reserva, aparicion al scroll, tarjetas de experiencias y canales.
@@ -9,6 +9,8 @@
 //   sin precios, duraciones, radios, tarifas ni horarios
 //   las tarjetas de experiencias salen de js/experiences.js en el navegador (fuente unica)
 //   el menu oculto y Private no existen en este archivo
+//   el bloque bookingForm (chat 6) nunca decide disponibilidad real: toda solicitud
+//   queda en estado pending y se completa en public/js/booking.js
 
 import { esc } from "../seo/head.js";
 import { BUSINESS } from "../seo/config.js";
@@ -277,6 +279,68 @@ const BLOCKS = {
       '<p class="lead lead--sm">' + esc(modalityLabel) + "</p></div>" +
       '<ul class="detail-list" data-reveal>' + rows + "</ul>" +
       '<p class="prose">' + esc(p.note) + "</p>" +
+      "</div></section>"
+    );
+  },
+
+  // Formulario de solicitud de reserva, chat 6. Nunca decide disponibilidad real:
+  // toda solicitud queda en pending y se completa en public/js/booking.js contra
+  // /api/bookings. Las etiquetas viajan como data-label-* para que booking.js
+  // no tenga que conocer el idioma, igual que data-cta-label en el bloque catalog.
+  bookingForm(ctx, block, id) {
+    const f = ctx.chrome.bookingForm;
+    return (
+      '<section class="section theme-' + esc(block.theme || "light") + '" aria-labelledby="' + id + '-heading">' +
+      '<div class="container">' +
+      '<h2 class="visually-hidden" id="' + id + '-heading">' + t(ctx, "@cta.book") + "</h2>" +
+      '<form class="form" data-booking-form novalidate' +
+      ' data-label-submit="' + t(ctx, f.submit) + '"' +
+      ' data-label-submitting="' + t(ctx, f.submitting) + '"' +
+      ' data-label-success-title="' + t(ctx, f.successTitle) + '"' +
+      ' data-label-success-text="' + t(ctx, f.successText) + '"' +
+      ' data-label-success-whatsapp="' + t(ctx, f.successWhatsapp) + '"' +
+      ' data-label-error-title="' + t(ctx, f.errorTitle) + '"' +
+      ' data-label-error-text="' + t(ctx, f.errorText) + '"' +
+      ' data-label-error-retry="' + t(ctx, f.errorRetry) + '">' +
+      '<p class="form__hp" aria-hidden="true"><label>Company<input type="text" name="company" tabindex="-1" autocomplete="off"></label></p>' +
+      '<div class="field">' +
+      '<label class="field__label" for="bf-experience">' + t(ctx, f.experience) + "</label>" +
+      '<select class="field__control" id="bf-experience" name="experience" required data-booking-experience>' +
+      '<option value="">' + t(ctx, f.experiencePlaceholder) + "</option>" +
+      "</select></div>" +
+      '<fieldset class="field field--radio-group">' +
+      '<legend class="field__label">' + t(ctx, f.modality) + "</legend>" +
+      '<div class="field__options">' +
+      '<label class="option"><input type="radio" name="modality" value="cabina" required> ' + t(ctx, f.modalityCabin) + "</label>" +
+      '<label class="option"><input type="radio" name="modality" value="domicilio"> ' + t(ctx, f.modalityHome) + "</label>" +
+      '<label class="option"><input type="radio" name="modality" value="hotel"> ' + t(ctx, f.modalityHotel) + "</label>" +
+      "</div></fieldset>" +
+      '<div class="field-row">' +
+      '<div class="field">' +
+      '<label class="field__label" for="bf-date">' + t(ctx, f.date) + "</label>" +
+      '<input class="field__control" id="bf-date" name="date" type="date" required>' +
+      "</div>" +
+      '<div class="field">' +
+      '<label class="field__label" for="bf-time">' + t(ctx, f.time) + "</label>" +
+      '<input class="field__control" id="bf-time" name="time" type="time" required>' +
+      "</div></div>" +
+      '<div class="field">' +
+      '<label class="field__label" for="bf-name">' + t(ctx, f.name) + "</label>" +
+      '<input class="field__control" id="bf-name" name="name" type="text" autocomplete="name" required>' +
+      "</div>" +
+      '<div class="field">' +
+      '<label class="field__label" for="bf-contact">' + t(ctx, f.contact) + "</label>" +
+      '<input class="field__control" id="bf-contact" name="contact" type="tel" autocomplete="tel" required>' +
+      "</div>" +
+      '<div class="field">' +
+      '<label class="field__label" for="bf-notes">' + t(ctx, f.notes) + "</label>" +
+      '<textarea class="field__control" id="bf-notes" name="notes" rows="3" placeholder="' + t(ctx, f.notesPlaceholder) + '"></textarea>' +
+      "</div>" +
+      '<div class="actions">' +
+      '<button class="btn btn--primary" type="submit" data-booking-submit>' + t(ctx, f.submit) + "</button>" +
+      "</div>" +
+      "</form>" +
+      '<div class="form__status" role="status" aria-live="polite" hidden data-booking-status></div>' +
       "</div></section>"
     );
   },
