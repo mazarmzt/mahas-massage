@@ -19,6 +19,18 @@
     // y sus precios el 2026-09-21; se activa en true
     "SCHEMA_INCLUDE_PRICES": "true"
   },
+  // Chat 6: KV para solicitudes de reserva (estado pending, sin disponibilidad real).
+  // Correr una vez: wrangler kv namespace create BOOKINGS_KV
+  // y reemplazar el id de abajo por el que devuelva ese comando.
+  "kv_namespaces": [
+    {
+      "binding": "BOOKINGS_KV",
+      "id": "TODO"
+    }
+  ],
   "observability": { "enabled": true }
-  // TODO chat 4: agregar aqui el binding de KV para el catalogo y las reservas
+  // ADMIN_TOKEN no vive aqui porque es secreto: se define con
+  //   wrangler secret put ADMIN_TOKEN
+  // Protege /api/admin/bookings. Ver public/admin (vista provisional, chat 6).
+  // TODO chat 4: agregar aqui el binding de KV para el catalogo
 }
