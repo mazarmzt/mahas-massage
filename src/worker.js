@@ -1,11 +1,13 @@
-// Worker de MAHAS MASSAGE, chats 2 y 3: i18n, SEO y paginas interiores.
+// Worker de MAHAS MASSAGE, chats 2, 3 y 6: i18n, SEO, paginas interiores y reservas.
 // La Home sale de los archivos estaticos (binding ASSETS) y el Worker le inyecta en el head
 // el meta, canonical, hreflang, Open Graph y Schema.org segun el idioma de la ruta.
 // Las paginas interiores se renderizan aqui desde plantillas mas JSON (src/pages/render.js)
 // y siempre salen con noindex mientras su ruta este en estado pending.
 // Tambien resuelve la raiz por idioma, sitemaps por idioma y robots.txt.
 //
-// TODO chat 4: agregar aqui el ruteo de /api/ hacia el catalogo y KV.
+// Chat 6: /api/bookings guarda solicitudes de reserva en KV con estado pending.
+// /api/admin/bookings las lista para el Admin provisional (ver public/admin), protegido
+// por el secreto ADMIN_TOKEN. Ninguna ruta decide disponibilidad real.
 // TODO chat 8: declarar en wrangler el binding ASSETS y las variables SITE_URL, INDEXABLE y SCHEMA_INCLUDE_PRICES.
 
 import { readConfig, NOINDEX_PREFIXES, LANG_COOKIE } from "./seo/config.js";
@@ -18,6 +20,7 @@ import { buildHeadBlock, getPageMeta } from "./seo/head.js";
 import { buildSitemapIndex, buildLocaleSitemap } from "./seo/sitemap.js";
 import { buildRobots } from "./seo/robots.js";
 import { renderPage } from "./pages/render.js";
+import { handleCreateBooking, handleListBookings } from "./api/bookings.js";
 
 // Quita del HTML estatico las etiquetas que el Worker vuelve a generar, para evitar duplicados
 class RemoveElement {
@@ -174,6 +177,21 @@ export default {
     const cfg = readConfig(env);
     const pathname = url.pathname;
     const noindexSite = !cfg.indexable;
+
+    // Rutas de API del chat 6. Van antes del filtro de metodo porque necesitan POST/GET
+    // segun el caso; ninguna decide disponibilidad real, solo guardan o listan solicitudes
+    if (pathname === "/api/bookings" && request.method === "POST") {
+      return handleCreateBooking(request, env);
+    }
+    if (pathname === "/api/admin/bookings" && request.method === "GET") {
+      return handleListBookings(request, env);
+    }
+    if (pathname.startsWith("/api/")) {
+      return new Response(JSON.stringify({ error: "not_found" }), {
+        status: 404,
+        headers: { "Content-Type": "application/json; charset=utf-8", "X-Robots-Tag": "noindex, nofollow" }
+      });
+    }
 
     if (request.method !== "GET" && request.method !== "HEAD") {
       return env.ASSETS.fetch(request);
