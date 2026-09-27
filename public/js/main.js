@@ -5,6 +5,7 @@
 
 import { SITE } from './config.js';
 import { EXPERIENCES } from './experiences.js';
+import { initBookingForm } from './booking.js';
 
 const doc = document.documentElement;
 const lang = doc.lang === 'en' ? 'en' : 'es';
@@ -266,3 +267,4 @@ wireBooking();
 wireChannels();
 initStickyCta();
 initReveal();
+initBookingForm();
