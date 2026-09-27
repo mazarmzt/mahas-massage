@@ -19,7 +19,7 @@
     "langSwitch": {
       "code": "ES",
       "lang": "es",
-      "aria": "ES, Español"
+      "aria": "ES, Espa\u00f1ol"
     },
     "cta": {
       "book": "Book an experience",
@@ -44,7 +44,7 @@
     },
     "footer": {
       "tag": "MASSAGE • WELLNESS • EXPERIENCES",
-      "place": "Mazatlán, Sinaloa, Mexico",
+      "place": "Mazatl\u00e1n, Sinaloa, Mexico",
       "navAria": "Footer",
       "exploreTitle": "Explore",
       "channelsTitle": "Channels",
@@ -100,56 +100,78 @@
       "note": "Prices subject to change without notice.",
       "perPerson": "Per person",
       "perCouple": "Per couple"
+    },
+    "bookingForm": {
+      "experience": "Experience",
+      "experiencePlaceholder": "Choose an experience",
+      "modality": "Modality",
+      "modalityCabin": "In-studio",
+      "modalityHome": "At home",
+      "modalityHotel": "Hotel",
+      "date": "Preferred date",
+      "time": "Preferred time",
+      "name": "Name",
+      "contact": "Phone or WhatsApp",
+      "notes": "Notes (optional)",
+      "notesPlaceholder": "Tell us anything else we should know.",
+      "submit": "Request booking",
+      "submitting": "Sending\u2026",
+      "successTitle": "Request received",
+      "successText": "We will reach out on WhatsApp to confirm your experience.",
+      "successWhatsapp": "Continue on WhatsApp",
+      "errorTitle": "We could not send your request",
+      "errorText": "Try again or message us directly on WhatsApp.",
+      "errorRetry": "Try again"
     }
   },
   "meta": {
     "about": {
-      "title": "About us · MAHAS MASSAGE",
-      "description": "Discover the vision behind MAHAS MASSAGE: spaces to slow down and come back to yourself through carefully crafted wellness experiences in Mazatlán."
+      "title": "About us \u00b7 MAHAS MASSAGE",
+      "description": "Discover the vision behind MAHAS MASSAGE: spaces to slow down and come back to yourself through carefully crafted wellness experiences in Mazatl\u00e1n."
     },
     "experience": {
-      "title": "The experience · MAHAS MASSAGE",
-      "description": "Space, aromas, music, presence and hospitality: discover how a MAHAS experience feels in Mazatlán."
+      "title": "The experience \u00b7 MAHAS MASSAGE",
+      "description": "Space, aromas, music, presence and hospitality: discover how a MAHAS experience feels in Mazatl\u00e1n."
     },
     "experiences": {
-      "title": "MAHAS Experiences · MAHAS MASSAGE",
-      "description": "Explore MAHAS experiences: massage, wellness and bodywork designed to bring you back to yourself, in Mazatlán."
+      "title": "MAHAS Experiences \u00b7 MAHAS MASSAGE",
+      "description": "Explore MAHAS experiences: massage, wellness and bodywork designed to bring you back to yourself, in Mazatl\u00e1n."
     },
     "service": {
-      "title": "At home & hotels · MAHAS MASSAGE",
-      "description": "At-home service and hotel visits in Mazatlán, subject to availability and service conditions. Ask MAHAS about availability."
+      "title": "At home & hotels \u00b7 MAHAS MASSAGE",
+      "description": "At-home service and hotel visits in Mazatl\u00e1n, subject to availability and service conditions. Ask MAHAS about availability."
     },
     "booking": {
-      "title": "Book an experience · MAHAS MASSAGE",
-      "description": "Book your MAHAS experience in Mazatlán. Choose an experience and request your moment; MAHAS confirms availability with you."
+      "title": "Book an experience \u00b7 MAHAS MASSAGE",
+      "description": "Book your MAHAS experience in Mazatl\u00e1n. Choose an experience and request your moment; MAHAS confirms availability with you."
     },
     "contact": {
-      "title": "Contact · MAHAS MASSAGE",
-      "description": "Get in touch with MAHAS MASSAGE in Mazatlán by WhatsApp, Instagram, Facebook, email or phone."
+      "title": "Contact \u00b7 MAHAS MASSAGE",
+      "description": "Get in touch with MAHAS MASSAGE in Mazatl\u00e1n by WhatsApp, Instagram, Facebook, email or phone."
     },
     "privacy": {
-      "title": "Privacy notice · MAHAS MASSAGE",
+      "title": "Privacy notice \u00b7 MAHAS MASSAGE",
       "description": "MAHAS MASSAGE privacy notice. Document in preparation."
     },
     "terms": {
-      "title": "Terms and conditions · MAHAS MASSAGE",
+      "title": "Terms and conditions \u00b7 MAHAS MASSAGE",
       "description": "MAHAS MASSAGE terms and conditions. Document in preparation."
     },
     "exp-relax": {
-      "title": "Relax · MAHAS Experiences · MAHAS MASSAGE",
-      "description": "Relax: an unhurried massage to slow down and come back to yourself. Duration, price and what to expect, in Mazatlán."
+      "title": "Relax \u00b7 MAHAS Experiences \u00b7 MAHAS MASSAGE",
+      "description": "Relax: an unhurried massage to slow down and come back to yourself. Duration, price and what to expect, in Mazatl\u00e1n."
     },
     "exp-deep": {
-      "title": "MAHAS DEEP · Deep Bodywork · MAHAS MASSAGE",
-      "description": "MAHAS DEEP · Deep Bodywork: deep bodywork with firm pressure and attention to detail, in Mazatlán."
+      "title": "MAHAS DEEP \u00b7 Deep Bodywork \u00b7 MAHAS MASSAGE",
+      "description": "MAHAS DEEP \u00b7 Deep Bodywork: deep bodywork with firm pressure and attention to detail, in Mazatl\u00e1n."
     },
     "exp-4hands": {
-      "title": "4 Hands · MAHAS Experiences · MAHAS MASSAGE",
-      "description": "4 Hands: two therapists work in sync to create a different bodily perception, in Mazatlán."
+      "title": "4 Hands \u00b7 MAHAS Experiences \u00b7 MAHAS MASSAGE",
+      "description": "4 Hands: two therapists work in sync to create a different bodily perception, in Mazatl\u00e1n."
     },
     "exp-couples": {
-      "title": "Couples · MAHAS Experiences · MAHAS MASSAGE",
-      "description": "Couples: an experience for two, each therapist attends to one person of the couple at the same time, in Mazatlán."
+      "title": "Couples \u00b7 MAHAS Experiences \u00b7 MAHAS MASSAGE",
+      "description": "Couples: an experience for two, each therapist attends to one person of the couple at the same time, in Mazatl\u00e1n."
     }
   },
   "pages": {
@@ -410,9 +432,8 @@
           ]
         },
         {
-          "type": "slot",
-          "name": "booking-form",
-          "note": "TODO chat 6: mount BookingForm here, connected to BookingService and ReservationProvider. The frontend never decides real availability. Possible states: IDLE, SELECTING, SUBMITTING, PENDING, CONFIRMED, REQUIRES_HUMAN_REVIEW, ERROR, CANCELLED."
+          "type": "bookingForm",
+          "theme": "light"
         },
         {
           "type": "text",
