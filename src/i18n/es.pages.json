@@ -5,14 +5,14 @@
     "brandAria": "MAHAS MASSAGE, inicio",
     "navAria": "Principal",
     "menu": {
-      "open": "Menú",
-      "close": "Cerrar menú"
+      "open": "Men\u00fa",
+      "close": "Cerrar men\u00fa"
     },
     "nav": {
       "home": "Inicio",
       "experiences": "Experiencias",
       "experience": "La experiencia",
-      "about": "Quiénes somos",
+      "about": "Qui\u00e9nes somos",
       "service": "Domicilio & Hoteles",
       "contact": "Contacto"
     },
@@ -30,13 +30,13 @@
       "whatsapp": "Escribir por WhatsApp"
     },
     "media": {
-      "photo": "Fotografía",
+      "photo": "Fotograf\u00eda",
       "pending": "pendiente"
     },
     "catalog": {
       "cta": "Conocer experiencia",
       "pendingLabel": "Pendiente",
-      "pendingText": "Descripción pendiente de aprobación."
+      "pendingText": "Descripci\u00f3n pendiente de aprobaci\u00f3n."
     },
     "closing": {
       "title": "Tu momento, a tu ritmo",
@@ -44,8 +44,8 @@
     },
     "footer": {
       "tag": "MASSAGE • WELLNESS • EXPERIENCES",
-      "place": "Mazatlán, Sinaloa, México",
-      "navAria": "Pie de página",
+      "place": "Mazatl\u00e1n, Sinaloa, M\u00e9xico",
+      "navAria": "Pie de p\u00e1gina",
       "exploreTitle": "Explorar",
       "channelsTitle": "Canales",
       "links": [
@@ -90,66 +90,88 @@
         }
       ],
       "privacy": "Aviso de privacidad",
-      "terms": "Términos y condiciones",
+      "terms": "T\u00e9rminos y condiciones",
       "rights": "MAHAS MASSAGE"
     },
     "pricing": {
-      "title": "Duración y precio",
-      "durationLabel": "Duración",
+      "title": "Duraci\u00f3n y precio",
+      "durationLabel": "Duraci\u00f3n",
       "priceLabel": "Precio",
       "note": "Precios sujetos a cambio sin previo aviso.",
       "perPerson": "Por persona",
       "perCouple": "Por pareja"
+    },
+    "bookingForm": {
+      "experience": "Experiencia",
+      "experiencePlaceholder": "Elige una experiencia",
+      "modality": "Modalidad",
+      "modalityCabin": "En cabina",
+      "modalityHome": "Domicilio",
+      "modalityHotel": "Hotel",
+      "date": "Fecha deseada",
+      "time": "Hora deseada",
+      "name": "Nombre",
+      "contact": "Tel\u00e9fono o WhatsApp",
+      "notes": "Notas (opcional)",
+      "notesPlaceholder": "Cu\u00e9ntanos algo m\u00e1s si lo necesitas.",
+      "submit": "Solicitar reserva",
+      "submitting": "Enviando\u2026",
+      "successTitle": "Solicitud recibida",
+      "successText": "Te contactamos por WhatsApp para confirmar tu experiencia.",
+      "successWhatsapp": "Continuar por WhatsApp",
+      "errorTitle": "No pudimos enviar tu solicitud",
+      "errorText": "Intenta de nuevo o escr\u00edbenos directamente por WhatsApp.",
+      "errorRetry": "Intentar de nuevo"
     }
   },
   "meta": {
     "about": {
-      "title": "Quiénes somos · MAHAS MASSAGE",
-      "description": "Conoce la visión de MAHAS MASSAGE: espacios para detener el ritmo y volver a ti mediante experiencias de bienestar cuidadas, en Mazatlán."
+      "title": "Qui\u00e9nes somos \u00b7 MAHAS MASSAGE",
+      "description": "Conoce la visi\u00f3n de MAHAS MASSAGE: espacios para detener el ritmo y volver a ti mediante experiencias de bienestar cuidadas, en Mazatl\u00e1n."
     },
     "experience": {
-      "title": "La experiencia · MAHAS MASSAGE",
-      "description": "Espacio, aromas, música, presencia y hospitalidad: descubre cómo se vive una experiencia MAHAS en Mazatlán."
+      "title": "La experiencia \u00b7 MAHAS MASSAGE",
+      "description": "Espacio, aromas, m\u00fasica, presencia y hospitalidad: descubre c\u00f3mo se vive una experiencia MAHAS en Mazatl\u00e1n."
     },
     "experiences": {
-      "title": "Experiencias MAHAS · MAHAS MASSAGE",
-      "description": "Explora las experiencias MAHAS: masaje, bienestar y trabajo corporal pensados para volver a ti, en Mazatlán."
+      "title": "Experiencias MAHAS \u00b7 MAHAS MASSAGE",
+      "description": "Explora las experiencias MAHAS: masaje, bienestar y trabajo corporal pensados para volver a ti, en Mazatl\u00e1n."
     },
     "service": {
-      "title": "Domicilio & Hoteles · MAHAS MASSAGE",
-      "description": "Servicio a domicilio y atención en hoteles en Mazatlán, sujeto a disponibilidad y condiciones de servicio. Consulta disponibilidad con MAHAS."
+      "title": "Domicilio & Hoteles \u00b7 MAHAS MASSAGE",
+      "description": "Servicio a domicilio y atenci\u00f3n en hoteles en Mazatl\u00e1n, sujeto a disponibilidad y condiciones de servicio. Consulta disponibilidad con MAHAS."
     },
     "booking": {
-      "title": "Reservar experiencia · MAHAS MASSAGE",
-      "description": "Reserva tu experiencia MAHAS en Mazatlán. Elige la experiencia y solicita tu momento; MAHAS confirma la disponibilidad contigo."
+      "title": "Reservar experiencia \u00b7 MAHAS MASSAGE",
+      "description": "Reserva tu experiencia MAHAS en Mazatl\u00e1n. Elige la experiencia y solicita tu momento; MAHAS confirma la disponibilidad contigo."
     },
     "contact": {
-      "title": "Contacto · MAHAS MASSAGE",
-      "description": "Contacta a MAHAS MASSAGE en Mazatlán por WhatsApp, Instagram, Facebook, correo o teléfono."
+      "title": "Contacto \u00b7 MAHAS MASSAGE",
+      "description": "Contacta a MAHAS MASSAGE en Mazatl\u00e1n por WhatsApp, Instagram, Facebook, correo o tel\u00e9fono."
     },
     "privacy": {
-      "title": "Aviso de privacidad · MAHAS MASSAGE",
-      "description": "Aviso de privacidad de MAHAS MASSAGE. Documento en preparación."
+      "title": "Aviso de privacidad \u00b7 MAHAS MASSAGE",
+      "description": "Aviso de privacidad de MAHAS MASSAGE. Documento en preparaci\u00f3n."
     },
     "terms": {
-      "title": "Términos y condiciones · MAHAS MASSAGE",
-      "description": "Términos y condiciones de MAHAS MASSAGE. Documento en preparación."
+      "title": "T\u00e9rminos y condiciones \u00b7 MAHAS MASSAGE",
+      "description": "T\u00e9rminos y condiciones de MAHAS MASSAGE. Documento en preparaci\u00f3n."
     },
     "exp-relax": {
-      "title": "Relax · Experiencias MAHAS · MAHAS MASSAGE",
-      "description": "Relax: un masaje pausado para detener el ritmo y volver a ti. Duración, precio y cómo se vive, en Mazatlán."
+      "title": "Relax \u00b7 Experiencias MAHAS \u00b7 MAHAS MASSAGE",
+      "description": "Relax: un masaje pausado para detener el ritmo y volver a ti. Duraci\u00f3n, precio y c\u00f3mo se vive, en Mazatl\u00e1n."
     },
     "exp-deep": {
-      "title": "MAHAS DEEP · Descontracturante · MAHAS MASSAGE",
-      "description": "MAHAS DEEP · Descontracturante: trabajo corporal profundo con presión firme y atención al detalle, en Mazatlán."
+      "title": "MAHAS DEEP \u00b7 Descontracturante \u00b7 MAHAS MASSAGE",
+      "description": "MAHAS DEEP \u00b7 Descontracturante: trabajo corporal profundo con presi\u00f3n firme y atenci\u00f3n al detalle, en Mazatl\u00e1n."
     },
     "exp-4hands": {
-      "title": "4 Hands · Experiencias MAHAS · MAHAS MASSAGE",
-      "description": "4 Hands: dos terapeutas trabajan de manera sincronizada para crear una percepción corporal diferente, en Mazatlán."
+      "title": "4 Hands \u00b7 Experiencias MAHAS \u00b7 MAHAS MASSAGE",
+      "description": "4 Hands: dos terapeutas trabajan de manera sincronizada para crear una percepci\u00f3n corporal diferente, en Mazatl\u00e1n."
     },
     "exp-couples": {
-      "title": "Couples · Experiencias MAHAS · MAHAS MASSAGE",
-      "description": "Couples: una experiencia para dos, cada terapeuta atiende a una persona de la pareja al mismo tiempo, en Mazatlán."
+      "title": "Couples \u00b7 Experiencias MAHAS \u00b7 MAHAS MASSAGE",
+      "description": "Couples: una experiencia para dos, cada terapeuta atiende a una persona de la pareja al mismo tiempo, en Mazatl\u00e1n."
     }
   },
   "pages": {
@@ -165,9 +187,9 @@
         {
           "type": "text",
           "theme": "light",
-          "title": "Nuestra visión",
+          "title": "Nuestra visi\u00f3n",
           "small": true,
-          "lead": "Crear espacios donde las personas puedan detener el ritmo de su vida y volver a conectar consigo mismas mediante experiencias de bienestar cuidadosamente diseñadas."
+          "lead": "Crear espacios donde las personas puedan detener el ritmo de su vida y volver a conectar consigo mismas mediante experiencias de bienestar cuidadosamente dise\u00f1adas."
         },
         {
           "type": "split",
@@ -177,9 +199,9 @@
             "label": "equipo",
             "ratio": "4x5"
           },
-          "title": "Las personas detrás de MAHAS",
+          "title": "Las personas detr\u00e1s de MAHAS",
           "text": [
-            "Cada experiencia está acompañada por personas que cuidan el detalle, reciben con calidez y ofrecen atención personalizada."
+            "Cada experiencia est\u00e1 acompa\u00f1ada por personas que cuidan el detalle, reciben con calidez y ofrecen atenci\u00f3n personalizada."
           ]
         },
         {
@@ -189,7 +211,7 @@
         {
           "type": "text",
           "theme": "light",
-          "title": "Cómo entendemos la experiencia",
+          "title": "C\u00f3mo entendemos la experiencia",
           "small": true,
           "lead": "Una experiencia cuidada de principio a fin.",
           "text": [
@@ -209,11 +231,11 @@
           "title": "Nuestros principios",
           "items": [
             "Presencia. Nada debe sentirse apresurado.",
-            "Sobriedad. Calidad por selección y detalle.",
+            "Sobriedad. Calidad por selecci\u00f3n y detalle.",
             "Sensorialidad. Una experiencia que se imagina y se percibe.",
             "Hospitalidad. Recibir e invitar, nunca presionar.",
-            "Naturalidad. Materiales, luz e imagen en armonía.",
-            "Precisión. Cada palabra y cada detalle tienen una función."
+            "Naturalidad. Materiales, luz e imagen en armon\u00eda.",
+            "Precisi\u00f3n. Cada palabra y cada detalle tienen una funci\u00f3n."
           ]
         },
         {
@@ -238,12 +260,12 @@
           "type": "split",
           "theme": "light",
           "media": {
-            "label": "atmósfera",
+            "label": "atm\u00f3sfera",
             "ratio": "4x5"
           },
-          "title": "Cómo se vive MAHAS",
+          "title": "C\u00f3mo se vive MAHAS",
           "text": [
-            "MAHAS cuida el espacio, los aromas, la música y la presencia para que la pausa comience antes que el masaje."
+            "MAHAS cuida el espacio, los aromas, la m\u00fasica y la presencia para que la pausa comience antes que el masaje."
           ]
         },
         {
@@ -257,15 +279,15 @@
             },
             {
               "name": "Aromas",
-              "text": "Una atmósfera cuidadosamente preparada."
+              "text": "Una atm\u00f3sfera cuidadosamente preparada."
             },
             {
-              "name": "Música",
-              "text": "Un entorno sonoro pensado para acompañar la pausa."
+              "name": "M\u00fasica",
+              "text": "Un entorno sonoro pensado para acompa\u00f1ar la pausa."
             },
             {
               "name": "Presencia",
-              "text": "Atención plena al momento y a la persona."
+              "text": "Atenci\u00f3n plena al momento y a la persona."
             },
             {
               "name": "Contacto",
@@ -296,7 +318,7 @@
           "lead": "Elige la pausa que necesitas.",
           "text": [
             "Cada experiencia parte de una misma idea: presencia, hospitalidad y trabajo corporal cuidado.",
-            "Estamos afinando el catálogo. Aquí verás los detalles de cada experiencia cuando estén listos."
+            "Estamos afinando el cat\u00e1logo. Aqu\u00ed ver\u00e1s los detalles de cada experiencia cuando est\u00e9n listos."
           ]
         },
         {
@@ -325,7 +347,7 @@
           "type": "intro",
           "theme": "dark",
           "title": "@nav.service",
-          "lead": "La pausa también puede ocurrir donde tú estés."
+          "lead": "La pausa tambi\u00e9n puede ocurrir donde t\u00fa est\u00e9s."
         },
         {
           "type": "split",
@@ -347,33 +369,33 @@
         {
           "type": "list",
           "theme": "dark",
-          "title": "Qué puedes esperar",
+          "title": "Qu\u00e9 puedes esperar",
           "items": [
             "MAHAS se desplaza hasta ti.",
-            "Llevamos elementos portátiles adecuados para el servicio.",
-            "Hay una preparación previa antes de llegar.",
-            "La disponibilidad depende de la ubicación y el horario.",
-            "Algunas solicitudes requieren confirmación."
+            "Llevamos elementos port\u00e1tiles adecuados para el servicio.",
+            "Hay una preparaci\u00f3n previa antes de llegar.",
+            "La disponibilidad depende de la ubicaci\u00f3n y el horario.",
+            "Algunas solicitudes requieren confirmaci\u00f3n."
           ]
         },
         {
           "type": "list",
           "theme": "raised",
-          "title": "Cómo funciona una solicitud",
+          "title": "C\u00f3mo funciona una solicitud",
           "text": [
-            "No es una reserva automática: cada solicitud se revisa antes de confirmarse."
+            "No es una reserva autom\u00e1tica: cada solicitud se revisa antes de confirmarse."
           ],
           "items": [
             "Solicitud",
-            "Datos básicos",
-            "Revisión de disponibilidad",
-            "Confirmación"
+            "Datos b\u00e1sicos",
+            "Revisi\u00f3n de disponibilidad",
+            "Confirmaci\u00f3n"
           ]
         },
         {
           "type": "closing",
           "title": "Consulta la disponibilidad",
-          "lead": "Indícanos dónde y cuándo, y lo revisamos contigo.",
+          "lead": "Ind\u00edcanos d\u00f3nde y cu\u00e1ndo, y lo revisamos contigo.",
           "primary": {
             "label": "checkAvailability",
             "to": "booking"
@@ -391,35 +413,34 @@
           "title": "@cta.book",
           "lead": "Un primer paso, sin prisa.",
           "text": [
-            "Cuéntanos qué experiencia buscas y cuándo. MAHAS confirma la disponibilidad contigo."
+            "Cu\u00e9ntanos qu\u00e9 experiencia buscas y cu\u00e1ndo. MAHAS confirma la disponibilidad contigo."
           ]
         },
         {
           "type": "list",
           "theme": "light",
-          "title": "Cómo funciona",
+          "title": "C\u00f3mo funciona",
           "text": [
-            "Una reserva no está confirmada hasta que MAHAS la confirma."
+            "Una reserva no est\u00e1 confirmada hasta que MAHAS la confirma."
           ],
           "items": [
             "Elige tu experiencia",
-            "Elige cómo quieres recibirla",
+            "Elige c\u00f3mo quieres recibirla",
             "Indica fecha y hora",
             "Solicita tu reserva",
-            "Recibe la confirmación"
+            "Recibe la confirmaci\u00f3n"
           ]
         },
         {
-          "type": "slot",
-          "name": "booking-form",
-          "note": "TODO chat 6: montar aqui BookingForm conectado a BookingService y ReservationProvider. El frontend nunca decide disponibilidad real. Estados posibles: IDLE, SELECTING, SUBMITTING, PENDING, CONFIRMED, REQUIRES_HUMAN_REVIEW, ERROR, CANCELLED."
+          "type": "bookingForm",
+          "theme": "light"
         },
         {
           "type": "text",
           "theme": "dark",
           "title": "Reserva por mensaje",
           "small": true,
-          "lead": "Mientras activamos la reserva en línea, escríbenos y te ayudamos a elegir.",
+          "lead": "Mientras activamos la reserva en l\u00ednea, escr\u00edbenos y te ayudamos a elegir.",
           "text": [
             "Hoteles, domicilios, grupos o solicitudes especiales se revisan de forma personal. La disponibilidad siempre la confirma MAHAS."
           ],
@@ -440,7 +461,7 @@
           "type": "intro",
           "theme": "dark",
           "title": "@nav.contact",
-          "lead": "Escríbenos, con gusto te acompañamos.",
+          "lead": "Escr\u00edbenos, con gusto te acompa\u00f1amos.",
           "text": [
             "@footer.place"
           ]
@@ -486,9 +507,9 @@
           "type": "intro",
           "theme": "dark",
           "title": "@footer.privacy",
-          "lead": "Documento en preparación.",
+          "lead": "Documento en preparaci\u00f3n.",
           "text": [
-            "El texto definitivo se incorporará cuando esté validado por la fuente legal correspondiente."
+            "El texto definitivo se incorporar\u00e1 cuando est\u00e9 validado por la fuente legal correspondiente."
           ]
         },
         {
@@ -505,9 +526,9 @@
           "type": "intro",
           "theme": "dark",
           "title": "@footer.terms",
-          "lead": "Documento en preparación.",
+          "lead": "Documento en preparaci\u00f3n.",
           "text": [
-            "El texto definitivo se incorporará cuando esté validado por la fuente legal correspondiente."
+            "El texto definitivo se incorporar\u00e1 cuando est\u00e9 validado por la fuente legal correspondiente."
           ]
         },
         {
@@ -531,7 +552,7 @@
         {
           "type": "text",
           "theme": "light",
-          "title": "Cómo se vive",
+          "title": "C\u00f3mo se vive",
           "small": true,
           "lead": "El ritmo baja desde el primer minuto. Un masaje lento, sin prisa, pensado para que sueltes lo que traes cargando."
         },
@@ -560,9 +581,9 @@
         {
           "type": "text",
           "theme": "light",
-          "title": "Cómo se vive",
+          "title": "C\u00f3mo se vive",
           "small": true,
-          "lead": "Presión firme y constante, con atención a cada zona. Un trabajo profundo que no deja de sentirse cuidado."
+          "lead": "Presi\u00f3n firme y constante, con atenci\u00f3n a cada zona. Un trabajo profundo que no deja de sentirse cuidado."
         },
         {
           "type": "pricing",
@@ -589,7 +610,7 @@
         {
           "type": "text",
           "theme": "light",
-          "title": "Cómo se vive",
+          "title": "C\u00f3mo se vive",
           "small": true,
           "lead": "Dos terapeutas se mueven al mismo tiempo, con un ritmo coordinado. El cuerpo percibe la experiencia de una forma distinta."
         },
@@ -618,7 +639,7 @@
         {
           "type": "text",
           "theme": "light",
-          "title": "Cómo se vive",
+          "title": "C\u00f3mo se vive",
           "small": true,
           "lead": "Dos camillas, un mismo espacio. Cada persona recibe su propio masaje, al mismo tiempo, en un momento compartido."
         },
