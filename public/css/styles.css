@@ -1,7 +1,7 @@
 /* ==========================================================================
    MAHAS MASSAGE · estilos · V0.1
    Mobile-first. Depende de tokens.css.
-   Orden: base, utilidades, botones, encabezado, hero, secciones, pie.
+   Orden: base, utilidades, botones, encabezado, hero, secciones, formulario, pie.
    ========================================================================== */
 
 /* ---------- Base ---------- */
@@ -216,6 +216,7 @@ button { font: inherit; color: inherit; }
 }
 
 .btn--block { width: 100%; }
+.btn:disabled { opacity: 0.6; cursor: default; }
 
 /* Enlace de texto con subrayado que se completa al pasar */
 .link {
@@ -557,6 +558,67 @@ button { font: inherit; color: inherit; }
   height: 4rem;
   margin: 0 auto 2.5rem;
   background: var(--line-strong);
+}
+
+/* ---------- Formulario de reserva, chat 6 ----------
+   Una columna centrada, sin cajas de color: solo una linea inferior que se
+   refuerza al enfocar. El honeypot queda oculto como .visually-hidden. */
+.form { margin-top: clamp(3rem, 8vw, 4.5rem); max-width: 34rem; margin-inline: auto; text-align: left; }
+.form__hp {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+.field { margin-top: 1.75rem; }
+.field:first-of-type { margin-top: 0; }
+.field__label {
+  display: block;
+  margin-bottom: 0.6rem;
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+.field__control {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  transition: border-color 0.4s var(--ease);
+}
+.field__control:focus-visible { outline: none; border-color: var(--line-strong); }
+textarea.field__control { resize: vertical; min-height: 5.5rem; }
+.field--radio-group { border: 0; padding: 0; margin: 1.75rem 0 0; }
+.field__options { display: grid; gap: 0.6rem; margin-top: 0.5rem; }
+.option { display: flex; align-items: center; gap: 0.6rem; font-size: 0.92rem; }
+.option input { accent-color: var(--color-arena); width: 1.1rem; height: 1.1rem; }
+.field-row { display: grid; gap: 1.75rem; margin-top: 1.75rem; }
+.form .actions { justify-content: flex-start; }
+.form__status { margin-top: clamp(3rem, 8vw, 4.5rem); max-width: 34rem; margin-inline: auto; text-align: center; }
+.form__status-title {
+  display: block;
+  font-family: var(--font-label);
+  font-size: 0.85rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.form__status p { margin-top: 0.75rem; color: var(--fg-muted); }
+.form__status .link { margin-top: 1.5rem; }
+.form__status[data-kind="error"] .form__status-title { color: var(--color-arena); }
+
+@media (min-width: 40em) {
+  .field-row { grid-template-columns: 1fr 1fr; }
 }
 
 /* ---------- Pie ---------- */
