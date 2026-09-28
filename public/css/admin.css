@@ -1,0 +1,415 @@
+/* ==========================================================================
+   MAHAS MASSAGE · Admin · V0.2, chats 5 y 6
+   Depende de tokens.css y de styles.css (botones, tipografia, foco, seleccion).
+   Aqui solo van los componentes propios del Admin: login, barra superior,
+   tarjetas de catalogo, barra de guardado y lista de solicitudes de reserva.
+   Sin bordes redondeados, sin sombras, sin desenfoques: el mismo trato plano
+   que ya usa el sitio publico.
+   ========================================================================== */
+
+:root {
+  /* Colores funcionales, solo para el Admin. No son parte de la paleta de
+     marca del Brand Book y no se usan en el sitio publico: existen unicamente
+     para distinguir el estado de una experiencia de un vistazo. */
+  --admin-status-approved: var(--color-salvia);
+  --admin-status-proposal: var(--color-arena);
+  --admin-status-pending: var(--fg-muted);
+  --admin-status-risk: #b5544a;
+  --admin-danger: #b5544a;
+}
+
+.admin-shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--fg);
+}
+
+.admin-loading {
+  flex: 1;
+  display: grid;
+  place-items: center;
+  padding: var(--gutter);
+  font-family: var(--font-label);
+  font-size: 0.72rem;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+  text-align: center;
+}
+
+/* ---------- Barra superior ---------- */
+.admin-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  height: var(--header-h);
+  padding-inline: var(--gutter);
+  background: color-mix(in srgb, var(--color-obsidian) 96%, transparent);
+  border-bottom: 1px solid var(--line);
+}
+
+.admin-topbar__user {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  color: var(--fg-muted);
+}
+
+.admin-topbar__name { color: var(--fg); }
+
+.admin-topbar__logout {
+  padding: 0;
+  background: none;
+  border: 0;
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: underline;
+  text-underline-offset: 0.25rem;
+  text-decoration-color: var(--line);
+  color: var(--fg-muted);
+  cursor: pointer;
+  transition: color 0.4s var(--ease), text-decoration-color 0.4s var(--ease);
+}
+.admin-topbar__logout:hover,
+.admin-topbar__logout:focus-visible {
+  color: var(--color-arena);
+  text-decoration-color: var(--color-arena);
+}
+
+/* ---------- Login ---------- */
+.admin-login {
+  flex: 1;
+  display: grid;
+  place-items: center;
+  padding: var(--gutter);
+}
+
+.admin-login__card {
+  width: 100%;
+  max-width: 22rem;
+  animation: admin-rise 0.5s var(--ease) both;
+}
+
+@keyframes admin-rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
+}
+
+.admin-login__title {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(1.6rem, 6vw, 2.1rem);
+  line-height: 1.25;
+}
+
+.admin-login__hint {
+  margin-top: 0.75rem;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--fg-muted);
+}
+
+.admin-login__submit { margin-top: 2.25rem; }
+
+/* ---------- Campos ---------- */
+.admin-field { margin-top: 1.75rem; }
+.admin-field:first-child { margin-top: 0; }
+
+.admin-field__label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-family: var(--font-label);
+  font-size: 0.62rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--eyebrow);
+}
+
+.admin-field__input,
+.admin-field__textarea,
+.admin-field__select {
+  width: 100%;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  padding: 0.6rem 0;
+  transition: border-color 0.4s var(--ease);
+}
+.admin-field__select { background: var(--color-obsidian); }
+.admin-field__input:focus,
+.admin-field__textarea:focus,
+.admin-field__select:focus {
+  outline: 0;
+  border-color: var(--focus);
+}
+.admin-field__textarea {
+  resize: vertical;
+  min-height: 4.5rem;
+  line-height: 1.55;
+}
+.admin-field--invalid .admin-field__input,
+.admin-field--invalid .admin-field__textarea,
+.admin-field--invalid .admin-field__select {
+  border-color: var(--admin-danger);
+}
+
+.admin-error {
+  min-height: 1.1rem;
+  margin-top: 1rem;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  color: var(--admin-danger);
+  opacity: 0;
+  transition: opacity 0.3s var(--ease);
+}
+.admin-error[data-visible="true"] { opacity: 1; }
+
+/* ---------- Catalogo ---------- */
+.admin-main { flex: 1; padding-block: clamp(2.5rem, 6vw, 4rem) 7rem; }
+.admin-main__head { margin-bottom: 2rem; }
+
+.admin-catalog {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+
+.admin-card { background: var(--ph-bg); }
+
+.admin-card__head {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 1rem;
+  padding: 1.25rem var(--gutter);
+  background: none;
+  border: 0;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.admin-card__dot {
+  flex: 0 0 auto;
+  width: 0.5rem;
+  height: 0.5rem;
+  background: var(--admin-dot-color, var(--fg-muted));
+}
+
+.admin-card__title { flex: 1; min-width: 0; }
+.admin-card__name { font-family: var(--font-display); font-size: 1.15rem; }
+.admin-card__meta {
+  margin-top: 0.25rem;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  color: var(--fg-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.admin-card__chevron {
+  flex: 0 0 auto;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-right: 1px solid var(--line-strong);
+  border-bottom: 1px solid var(--line-strong);
+  transform: rotate(-45deg);
+  transition: transform 0.4s var(--ease);
+}
+.admin-card[data-open="true"] .admin-card__chevron { transform: rotate(45deg); }
+
+.admin-card__body {
+  max-height: 0;
+  overflow: hidden;
+  padding-inline: var(--gutter);
+  transition: max-height 0.5s var(--ease);
+}
+.admin-card[data-open="true"] .admin-card__body { max-height: 60rem; }
+
+.admin-card__body-inner { padding-bottom: 1.85rem; }
+
+.admin-card__grid { display: grid; gap: 0 1.5rem; }
+
+.admin-durations { margin-top: 1.75rem; }
+.admin-duration-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+.admin-duration-row:first-child { margin-top: 0; }
+.admin-duration-row__label {
+  grid-column: 1 / -1;
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  color: var(--fg-muted);
+}
+.admin-duration-row__caption {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-family: var(--font-label);
+  font-size: 0.58rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--eyebrow);
+}
+
+/* ---------- Barra de guardado ---------- */
+.admin-savebar {
+  position: sticky;
+  bottom: 0;
+  z-index: 20;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 1.25rem;
+  padding: 1rem var(--gutter);
+  background: color-mix(in srgb, var(--color-obsidian) 96%, transparent);
+  border-top: 1px solid var(--line);
+  transform: translateY(100%);
+  transition: transform 0.4s var(--ease);
+}
+.admin-savebar[data-visible="true"] { transform: none; }
+
+.admin-savebar__label {
+  font-family: var(--font-label);
+  font-size: 0.64rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+
+.admin-savebar__error {
+  flex-basis: 100%;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  color: var(--admin-danger);
+}
+
+.admin-savebar__actions { display: flex; gap: 0.75rem; }
+
+.btn--sm { min-height: 2.6rem; padding: 0 1.4rem; font-size: 0.68rem; }
+
+/* ---------- Confirmacion de cierre de sesion ---------- */
+.admin-logout-confirm {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+}
+.admin-logout-confirm__text {
+  margin-bottom: 1rem;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--fg-muted);
+}
+.admin-logout-confirm__actions { display: flex; gap: 0.75rem; }
+
+/* ---------- Aviso flotante ---------- */
+.admin-flash {
+  position: fixed;
+  left: 50%;
+  bottom: 6rem;
+  z-index: 30;
+  padding: 0.75rem 1.25rem;
+  background: var(--color-obsidian);
+  border: 1px solid var(--color-salvia);
+  color: var(--color-salvia);
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, 8px);
+  transition: opacity 0.35s var(--ease), transform 0.35s var(--ease);
+}
+.admin-flash[data-visible="true"] { opacity: 1; transform: translate(-50%, 0); }
+
+/* ---------- Tablet ---------- */
+@media (min-width: 40em) {
+  .admin-card__grid { grid-template-columns: 1fr 1fr; }
+  .admin-duration-row { grid-template-columns: repeat(3, 1fr); align-items: end; }
+  .admin-duration-row__label { grid-column: auto; align-self: center; }
+}
+
+/* ---------- Movimiento reducido ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .admin-login__card { animation: none; }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+  }
+}
+
+/* ---------- Solicitudes de reserva, chat 6 ----------
+   Lista de solo lectura debajo del catalogo. Mismo trato plano del resto del
+   Admin: sin sombras, sin bordes redondeados, solo una linea fina entre filas. */
+.admin-bookings { margin-top: clamp(3rem, 8vw, 5rem); }
+
+.admin-bookings__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.admin-booking {
+  padding-block: 1.25rem;
+  border-top: 1px solid var(--line);
+}
+
+.admin-booking:last-child { border-bottom: 1px solid var(--line); }
+
+.admin-booking__top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem 1rem;
+}
+
+.admin-booking__name {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 400;
+}
+
+.admin-booking__flag {
+  font-family: var(--font-label);
+  font-size: 0.68rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--admin-status-proposal);
+}
+
+.admin-booking__line,
+.admin-booking__notes,
+.admin-booking__meta { margin: 0.35rem 0 0; }
+
+.admin-booking__notes { color: var(--fg-muted); }
+
+.admin-booking__meta {
+  font-family: var(--font-label);
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
