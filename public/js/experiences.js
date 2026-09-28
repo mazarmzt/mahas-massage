@@ -1,84 +1,78 @@
 // ============================================================================
-// MAHAS MASSAGE · datos de experiencias · V0.1
-// Fuente unica de las tarjetas de la Home. En el chat 2 esta lista pasa a
-// servirse desde Cloudflare KV con la misma forma de datos.
+// MAHAS MASSAGE · datos de experiencias · V0.2
+// Ya no es una lista escrita a mano. El catalogo se pide a /api/catalog, que lo
+// lee del mismo KV que usa el Schema.org y las paginas individuales
+// (src/seo/catalog.js). Una sola fuente, editable desde el Admin.
 //
-// status:
-//   approved  se publica
-//   proposal  no se publica como definitivo
-//   pending   no se publica como definitivo
-//   risk      bloqueado
-// listed: false oculta la experiencia de listados publicos
+// main.js y booking.js siguen importando EXPERIENCES con la misma forma de antes
+// (name, shortDescription, duration, price, modality, slug, status), por eso
+// aqui solo se traduce la respuesta de la API a esa forma. El slug es el mismo id
+// del catalogo (por ejemplo 4-hands), el mismo que usan las rutas del sitio.
 //
-// Catalogo y precios aprobados por el cliente el 2026-09-21.
-// Los mismos valores viven en src/seo/catalog.js para el Schema.org.
-// TODO chat 4: unificar ambas listas en una sola fuente servida desde KV.
+// La API solo devuelve experiencias approved. Si la peticion falla o tarda mas
+// de 4 segundos, EXPERIENCES queda vacia: la seccion de tarjetas se oculta sola
+// y el selector de reserva queda sin opciones, nunca con datos inventados.
 // ============================================================================
 
-export const EXPERIENCES = [
-  {
-    id: 'relax',
-    slug: 'relax',
-    name: { es: 'Relax', en: 'Relax' },
-    shortDescription: {
-      es: 'Un masaje pausado para detener el ritmo y volver a ti.',
-      en: 'An unhurried massage to slow down and come back to yourself.'
-    },
+const TIMEOUT_MS = 4000;
+
+// Sin sufijo de moneda, decision del cliente: se muestra $1,000, no $1,000 MXN
+function formatMoney(amount, locale) {
+  return '$' + new Intl.NumberFormat(locale, { maximumFractionDigits: 0 }).format(amount);
+}
+
+function toExperience(item) {
+  const durations = Array.isArray(item.durations) ? item.durations : [];
+  const minutes = durations.map((d) => d.minutes);
+  const prices = durations.map((d) => d.price);
+  const hasData = minutes.length > 0 && prices.length > 0;
+
+  const min = hasData ? Math.min(...minutes) : 0;
+  const max = hasData ? Math.max(...minutes) : 0;
+  const rangeLabel = !hasData ? '' : min === max ? `${min} min` : `${min}–${max} min`;
+  const lowest = hasData ? Math.min(...prices) : 0;
+  const isCouple = item.pricePer === 'couple';
+
+  return {
+    id: item.id,
+    slug: item.id,
+    name: item.name,
+    shortDescription: item.description,
     image: null,
-    duration: { es: '60–120 min', en: '60–120 min' },
-    price: { es: 'Desde $1,000 MXN', en: 'From $1,000 MXN' },
-    modality: { es: 'Por persona', en: 'Per person' },
+    duration: { es: rangeLabel, en: rangeLabel },
+    price: hasData
+      ? {
+          es: `Desde ${formatMoney(lowest, 'es-MX')}`,
+          en: `From ${formatMoney(lowest, 'en-US')}`
+        }
+      : { es: '', en: '' },
+    modality: isCouple
+      ? { es: 'Por pareja', en: 'Per couple' }
+      : { es: 'Por persona', en: 'Per person' },
     availability: null,
-    status: 'approved',
+    status: item.status,
     listed: true
-  },
-  {
-    id: 'deep',
-    slug: 'deep',
-    name: { es: 'MAHAS DEEP · Descontracturante', en: 'MAHAS DEEP · Deep Bodywork' },
-    shortDescription: {
-      es: 'Trabajo corporal profundo, con presión firme y atención al detalle.',
-      en: 'Deep bodywork with firm pressure and attention to detail.'
-    },
-    image: null,
-    duration: { es: '60–120 min', en: '60–120 min' },
-    price: { es: 'Desde $1,000 MXN', en: 'From $1,000 MXN' },
-    modality: { es: 'Por persona', en: 'Per person' },
-    availability: null,
-    status: 'approved',
-    listed: true
-  },
-  {
-    id: 'four-hands',
-    slug: '4-hands',
-    name: { es: '4 Hands', en: '4 Hands' },
-    shortDescription: {
-      es: 'Una experiencia coordinada en la que dos terapeutas trabajan de manera sincronizada para crear una percepción corporal diferente.',
-      en: 'A coordinated experience in which two therapists work in sync to create a different bodily perception.'
-    },
-    image: null,
-    duration: { es: '60–120 min', en: '60–120 min' },
-    price: { es: 'Desde $1,600 MXN', en: 'From $1,600 MXN' },
-    modality: { es: 'Por persona', en: 'Per person' },
-    availability: null,
-    status: 'approved',
-    listed: true
-  },
-  {
-    // Couples es distinto de 4 Hands: cada terapeuta atiende a una persona
-    id: 'couples',
-    slug: 'couples',
-    name: { es: 'Couples', en: 'Couples' },
-    shortDescription: {
-      es: 'Una experiencia para dos: cada terapeuta atiende a una persona de la pareja al mismo tiempo.',
-      en: 'An experience for two: each therapist attends to one person of the couple at the same time.'
-    },
-    image: null,
-    duration: { es: '60–120 min', en: '60–120 min' },
-    price: { es: 'Desde $1,800 MXN', en: 'From $1,800 MXN' },
-    modality: { es: 'Por pareja', en: 'Per couple' },
-    availability: null,
-    status: 'approved',
-    listed: true
+  };
+}
+
+async function loadExperiences() {
+  // Solo las paginas que muestran tarjetas o el formulario de reserva necesitan el catalogo
+  const needsCatalog =
+    document.querySelector('[data-experience-grid]') || document.querySelector('[data-booking-form]');
+  if (!needsCatalog) return [];
+
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), TIMEOUT_MS);
+  try {
+    const response = await fetch('/api/catalog', { signal: controller.signal });
+    if (!response.ok) return [];
+    const data = await response.json();
+    return (data.items || []).map(toExperience);
+  } catch (error) {
+    return [];
+  } finally {
+    clearTimeout(timer);
   }
-];
+}
+
+export const EXPERIENCES = await loadExperiences();
