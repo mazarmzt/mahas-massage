@@ -1,11 +1,11 @@
 // Endpoints de reservas, chat 6.
 // Toda solicitud queda en estado pending; el frontend nunca confirma disponibilidad real.
-// GET /api/admin/bookings requiere Authorization: Bearer <ADMIN_TOKEN> (wrangler secret).
-// TODO chat 5: cuando exista sesion real de Admin, esta lista debe autenticarse con ella
-// en vez de un token compartido.
+// GET /api/admin/bookings usa la misma guardia del Admin que el catalogo (src/admin/guard.js):
+// sesion de usuario o ADMIN_KEY de servicio. Ya no existe el token compartido ADMIN_TOKEN.
 
 import { saveBooking, listBookings } from "../booking/store.js";
 import { validateBooking, needsHumanReview } from "../booking/validate.js";
+import { isAdminAuthorized } from "../admin/guard.js";
 
 function json(body, status) {
   return new Response(JSON.stringify(body), {
@@ -51,14 +51,8 @@ export async function handleCreateBooking(request, env) {
   return json({ id: stored.id, status: stored.status });
 }
 
-function isAuthorized(request, env) {
-  const header = request.headers.get("Authorization") || "";
-  const token = header.startsWith("Bearer ") ? header.slice(7) : "";
-  return Boolean(env.ADMIN_TOKEN) && token === env.ADMIN_TOKEN;
-}
-
 export async function handleListBookings(request, env) {
-  if (!isAuthorized(request, env)) return json({ error: "unauthorized" }, 401);
+  if (!(await isAdminAuthorized(request, env))) return json({ error: "unauthorized" }, 401);
   if (!env.BOOKINGS_KV) return json({ error: "storage_not_configured" }, 500);
 
   const bookings = await listBookings(env, 200);
