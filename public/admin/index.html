@@ -1,86 +1,35 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex, nofollow">
-<title>MAHAS · Admin de reservas</title>
-<link rel="stylesheet" href="/css/tokens.css">
-<style>
-  /* Vista provisional de solo lectura para las solicitudes de reserva, chat 6.
-     No sustituye el Admin real del chat 5: aqui no hay sesion, solo un token
-     compartido que se pide una vez y se guarda en este navegador. Cuando el
-     chat 5 exista, esta pantalla debe integrarse a esa sesion real o retirarse. */
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    background: var(--color-obsidian);
-    color: var(--color-marfil);
-    font-family: var(--font-body);
-    padding: 2rem 1.25rem 4rem;
-  }
-  h1 {
-    font-family: var(--font-label);
-    font-size: 1rem;
-    letter-spacing: 0.24em;
-    text-transform: uppercase;
-    margin: 0 0 0.5rem;
-  }
-  .note { color: color-mix(in srgb, var(--color-marfil) 70%, transparent); font-style: italic; margin: 0 0 2rem; }
-  .token-bar { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 2rem; }
-  input[type="password"] {
-    flex: 1;
-    min-width: 14rem;
-    padding: 0.7rem 0.9rem;
-    background: transparent;
-    border: 1px solid var(--color-arena);
-    color: inherit;
-    font-family: inherit;
-  }
-  button {
-    padding: 0.7rem 1.3rem;
-    background: var(--color-arena);
-    color: var(--color-obsidian);
-    border: 0;
-    font-family: inherit;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    font-size: 0.75rem;
-    cursor: pointer;
-  }
-  button.secondary { background: transparent; color: inherit; border: 1px solid var(--color-arena); }
-  table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
-  th, td { text-align: left; padding: 0.65rem 0.75rem; border-bottom: 1px solid color-mix(in srgb, var(--color-arena) 30%, transparent); vertical-align: top; }
-  th {
-    font-family: var(--font-label);
-    font-size: 0.65rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--color-salvia);
-  }
-  .badge { display: inline-block; padding: 0.2rem 0.5rem; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; margin-right: 0.35rem; }
-  .badge--human { background: var(--color-arena); color: var(--color-obsidian); }
-  .badge--pending { border: 1px solid var(--color-arena); }
-  .wa-link { color: var(--color-arena); text-decoration: underline; }
-  .empty, .error { color: color-mix(in srgb, var(--color-marfil) 70%, transparent); font-style: italic; }
-  .error { color: #d98c8c; }
-  .table-wrap { overflow-x: auto; }
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+  <title>MAHAS ADMIN</title>
+
+  <!-- Ademas de esto, el Worker agrega X-Robots-Tag: noindex por NOINDEX_PREFIXES
+       y robots.txt ya trae Disallow: /admin/. Esta etiqueta es un tercer cinturon -->
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#171614">
+  <meta name="color-scheme" content="dark">
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23171614'/%3E%3Ctext x='32' y='43' font-family='Georgia,serif' font-size='34' text-anchor='middle' fill='%23B79A68'%3EM%3C/text%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Manrope:wght@400;500&display=swap">
+
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/admin.css">
 </head>
 <body>
-  <h1>MAHAS · Solicitudes de reserva</h1>
-  <p class="note">
-    Vista provisional de solo lectura, mientras no existe el Admin del chat 5.
-    La disponibilidad real y la confirmación se siguen manejando por WhatsApp.
-  </p>
-  <div class="token-bar">
-    <input type="password" id="admin-token" placeholder="Token de acceso" autocomplete="off">
-    <button id="admin-load" type="button">Cargar</button>
-    <button id="admin-refresh" class="secondary" type="button" hidden>Actualizar</button>
-    <button id="admin-forget" class="secondary" type="button" hidden>Olvidar token</button>
+  <!-- Todo el contenido lo arma admin.js segun el estado: cargando, login o
+       catalogo. Sin JS no hay panel, y esta bien: es una herramienta interna,
+       no una pagina publica que necesite funcionar sin JavaScript -->
+  <div id="admin-root" class="admin-shell">
+    <p class="admin-loading" role="status">Cargando…</p>
   </div>
-  <div id="admin-output"></div>
-  <script type="module" src="/admin/admin.js"></script>
+
+  <script type="module" src="/js/admin.js"></script>
 </body>
 </html>
