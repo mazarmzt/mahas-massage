@@ -1,68 +1,58 @@
 # MAHAS MASSAGE
 
-Cloudflare Worker con Vanilla JS, HTML y CSS. Sin dependencias de terceros.
-Chats incluidos: 1 (Home), 2 (i18n y SEO), 3 (paginas interiores).
+Sitio bilingue (ES/EN) sobre Cloudflare Workers, KV y Vanilla JS, sin frameworks ni dependencias de terceros.
 
-## Estructura
+## Estado (V0.x)
 
-- wrangler.jsonc: configuracion del Worker y variables
-- src/worker.js: entrada del Worker
-- src/seo/: rutas, head, Schema.org, sitemap y robots
-- src/i18n/: textos ES y EN (es.json, en.json, es.pages.json, en.pages.json)
-- src/pages/render.js: plantillas de las paginas interiores
-- public/: Home estatica, css, js e imagen Open Graph
+| Chat | Contenido | Estado |
+|------|-----------|--------|
+| 1 | Home estatica y sistema de diseno | Hecho |
+| 2 | i18n, SEO, sitemaps, Schema.org | Hecho |
+| 3 | Paginas interiores | Hecho |
+| 4 | Catalogo unico en KV y API | Hecho |
+| 5 | Admin con login por persona | Hecho |
+| 6 | Solicitudes de reserva (pending + WhatsApp) | Hecho |
+| 7 | Registro 18+ y menu oculto | Pendiente |
+| 8 | Despliegue, fuentes propias, seguridad | Pendiente |
+| 9 | Auditoria pre-lanzamiento | Pendiente |
 
-## Montar desde GitHub y Cloudflare
+## Como funciona
 
-1. Sube esta carpeta a un repositorio de GitHub.
-2. En Cloudflare abre Workers y Pages, elige Create, importa el repositorio y conecta GitHub.
-3. Nombre del Worker: mahas-massage. Comando de build: dejar vacio. Comando de deploy: npx wrangler deploy.
-4. Cada push a la rama principal publica una nueva version.
+- `src/worker.js` atiende todo: API, sitemaps, robots, paginas interiores y la Home.
+- El catalogo vive en KV (`CATALOG_KV`, clave `catalog`). `getCatalog` solo devuelve `approved`.
+- `/api/catalog` (publico) alimenta las tarjetas de la Home y el selector de reserva
+  (`public/js/experiences.js`). El Schema.org y las paginas individuales leen el mismo KV.
+- `/admin/` es el panel: login de usuario y contrasena, edicion del catalogo y lista de
+  solicitudes de reserva. Nunca se indexa ni se enlaza desde el sitio.
+- Reservas: `POST /api/bookings` guarda la solicitud en `BOOKINGS_KV` con estado `pending`.
+  La disponibilidad real se confirma por una persona, por WhatsApp.
 
-## Probar en la URL workers.dev
+## Montaje (una sola vez)
 
-Sustituye TU-URL por la que te muestre Cloudflare.
+1. `npx wrangler kv namespace create CATALOG_KV` y pegar el id en `wrangler.jsonc`.
+2. `npx wrangler kv namespace create BOOKINGS_KV` y pegar el id en `wrangler.jsonc`.
+3. En el dashboard de Cloudflare, namespace `CATALOG_KV`, crear la clave `catalog` y pegar
+   el contenido de `kv/catalog.seed.json`.
+4. Generar el hash de cada usuario: `node scripts/hash-password.mjs una-contrasena`.
+   Con la salida de Silvia y Sergio armar el JSON del arreglo de usuarios.
+5. Secretos (`npx wrangler secret put <NOMBRE>`):
+   - `ADMIN_USERS` el JSON del paso 4
+   - `ADMIN_SESSION_SECRET` una cadena aleatoria larga (`openssl rand -base64 48`)
+   - `ADMIN_KEY` opcional, acceso de servicio
+6. `npx wrangler deploy`.
 
-- TU-URL/ redirige a /es/ o /en/ segun el navegador
-- TU-URL/es/ y TU-URL/en/ Home con head inyectado
-- TU-URL/es/quienes-somos/ y TU-URL/en/about/
-- TU-URL/es/la-experiencia/ y TU-URL/en/the-experience/
-- TU-URL/es/experiencias/ y TU-URL/en/experiences/
-- TU-URL/es/domicilio-hoteles/ y TU-URL/en/at-home-hotels/
-- TU-URL/es/reservar/ y TU-URL/en/book/
-- TU-URL/es/contacto/ y TU-URL/en/contact/
-- TU-URL/es/aviso-de-privacidad/ y TU-URL/es/terminos-y-condiciones/
-- TU-URL/sitemap.xml y TU-URL/robots.txt
+## Verificar al montar
 
-Todas las paginas nuevas salen con noindex y no aparecen en el sitemap.
-Para ver el encabezado noindex: en Chrome de escritorio, DevTools, pestana Network, columna Headers.
-
-## Estado y variables
-
-- INDEXABLE en false: todo el sitio sale noindex, dominio propio incluido. Cambiar a true solo al lanzar.
-- SCHEMA_INCLUDE_PRICES en true: catalogo y precios aprobados por el cliente el 2026-09-21.
-  El Schema.org de la Home ya publica precios reales (MXN) para las 4 experiencias.
-- Para publicar una pagina interior: cambiar su status a published en src/seo/routes.js y aprobar su copy.
-- Dominio propio: agregar mahasmassage.com desde Custom Domains en el Worker. Sin rutas en wrangler.
-
-## Catalogo aprobado (2026-09-21)
-
-- Relax: 60/90/120 min, desde $1,000 MXN, por persona
-- MAHAS DEEP · Descontracturante: 60/90/120 min, desde $1,000 MXN, por persona
-- 4 Hands: 60/90/120 min, desde $1,600 MXN, por persona
-- Couples: 60/90/120 min, desde $1,800 MXN, por pareja
-
-Fuente: src/seo/catalog.js (Schema.org) y public/js/experiences.js (tarjetas de la Home).
-Son dos archivos con la misma informacion. TODO chat 4: unificarlos en una sola fuente via KV.
-
-Nuevas paginas individuales de cada experiencia, con su precio y duracion aprobados:
-/es/experiencias/relax/, /es/experiencias/deep/, /es/experiencias/4-hands/, /es/experiencias/couples/
-(y sus equivalentes en /en/experiences/). Siguen en pending y noindex hasta aprobar su diseño y copy.
-Cada una trae un bloque "Que incluye" marcado TODO: pendiente de aprobacion operativa.
+- `/api/catalog` devuelve las 4 experiencias.
+- `/admin/` pide login; con usuario y contrasena correctos carga catalogo y solicitudes.
+- Editar un precio en el Admin y comprobar que cambia en la Home y en la pagina de la experiencia.
+- Enviar una reserva de prueba en `/es/reservar/` y verla como pendiente en `/admin/`.
+- Con `INDEXABLE=false` todo sale con noindex; ponerlo en `true` solo al lanzar.
 
 ## Pendientes conocidos
 
-- Las paginas exp-* siguen en pending: aprobar diseño y copy (parrafo "Como se vive" y bloque
-  "Que incluye") antes de publicarlas.
-- Textos legales, fotografias, biografias y formulario de reserva.
-- Unificar catalog.js y experiences.js en una sola fuente (KV), previsto para el chat 4.
+- Las tarjetas de la Home las pinta el navegador; mover ese render al Worker mejora el SEO.
+- `src/seo/config.js` y `public/js/config.js` duplican telefono, correo y redes.
+- Google Fonts es un tercero: autoalojar las fuentes antes de lanzar (chat 8).
+- Textos legales, dominio propio, HEX oficiales y fotos siguen como TODO.
+- Antes de lanzar: `showPending` ya no existe; nada no aprobado sale en publico.
