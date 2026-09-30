@@ -58,3 +58,4 @@ Sitio bilingue (ES/EN) sobre Cloudflare Workers, KV y Vanilla JS, sin frameworks
 - Antes de lanzar: `showPending` ya no existe; nada no aprobado sale en publico.
 
 <!-- redeploy-ping: forzar nuevo build de Cloudflare Workers -->
+
