@@ -56,3 +56,5 @@ Sitio bilingue (ES/EN) sobre Cloudflare Workers, KV y Vanilla JS, sin frameworks
 - Google Fonts es un tercero: autoalojar las fuentes antes de lanzar (chat 8).
 - Textos legales, dominio propio, HEX oficiales y fotos siguen como TODO.
 - Antes de lanzar: `showPending` ya no existe; nada no aprobado sale en publico.
+
+<!-- redeploy-ping: forzar nuevo build de Cloudflare Workers -->
