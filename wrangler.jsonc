@@ -29,8 +29,8 @@
   //              Sembrar la clave catalog con el contenido de kv/catalog.seed.json.
   // BOOKINGS_KV  chat 6. Solicitudes de reserva en estado pending, sin disponibilidad real.
   "kv_namespaces": [
-    { "binding": "CATALOG_KV", "id": "TODO" },
-    { "binding": "BOOKINGS_KV", "id": "TODO" }
+    { "binding": "CATALOG_KV", "id": "248fb35909924bebb604c06a9eb22b7e" },
+    { "binding": "BOOKINGS_KV", "id": "4f67c413c4a44238b213410250114da5" }
   ],
   "observability": { "enabled": true }
   // Secretos, ninguno va aqui. Se definen con: npx wrangler secret put <NOMBRE>
