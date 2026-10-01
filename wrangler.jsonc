@@ -46,3 +46,4 @@
   // El secreto ADMIN_TOKEN del chat 6 ya no se usa: la lista de reservas se protege con la
   // misma guardia que el catalogo (src/admin/guard.js).
 }
+
