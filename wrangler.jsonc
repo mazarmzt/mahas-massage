@@ -11,6 +11,7 @@
     "run_worker_first": true
   },
   "vars": {
+    "ADMIN_USERS": "[\n {\n \"username\": \"prueba\",\n \"name\": \"Prueba\",\n \"salt\": \"rQj81R4TQ1NldAMGFZKLpA==\",\n \"hash\": \"erjPhaZxawmb2Vftg+SKF51txIiQ6x2dcERtMZSgIEU=\",\n \"iterations\": 210000\n }\n]",
     // Dominio canonico usado en canonical, hreflang, Open Graph y sitemaps
     "SITE_URL": "https://mahasmassage.com",
     // Solo el valor true permite indexar. Dejar en false hasta el lanzamiento
@@ -46,4 +47,3 @@
   // El secreto ADMIN_TOKEN del chat 6 ya no se usa: la lista de reservas se protege con la
   // misma guardia que el catalogo (src/admin/guard.js).
 }
-
