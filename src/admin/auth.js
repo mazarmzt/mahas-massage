@@ -22,6 +22,12 @@
 // El contador de intentos fallidos si vive en CATALOG_KV (el mismo namespace
 // del catalogo, sin crear uno nuevo), porque ahi un poco de retraso entre
 // nodos no rompe nada, solo hace el limite un poco menos exacto.
+//
+// TEMPORAL 2026-10-01: usuario temporal/Temporal2026 agregado directo en el
+// codigo (no depende del secreto ADMIN_USERS) para diagnosticar y destrabar el
+// acceso mientras se confirma por que el secreto guardado en Cloudflare no
+// deja entrar. QUITAR este bloque (TEMP_USER y su uso en parseAdminUsers) en
+// cuanto el login con el secreto real funcione.
 
 import { readCookie } from "../seo/lang.js";
 
@@ -31,6 +37,16 @@ export const SESSION_TTL_SECONDS = 8 * 60 * 60;
 const PBKDF2_ITERATIONS_DEFAULT = 210000;
 const LOGIN_FAIL_LIMIT = 5;
 const LOGIN_FAIL_WINDOW_SECONDS = 15 * 60;
+
+// TEMPORAL: usuario "temporal", contrasena "Temporal2026". Quitar junto con el
+// comentario de arriba una vez resuelto el problema del secreto ADMIN_USERS.
+const TEMP_USER = {
+  username: "temporal",
+  name: "Temporal",
+  salt: "FEaoHeNTYWV82iNlaxi94Q==",
+  hash: "DmWSyvqbGbWdeGYGYwhIx+hrO2Jxa4HPBs74sHjeWzc=",
+  iterations: 210000
+};
 
 // Sal y hash sin significado, de 32 bytes, usados solo para que verificar un
 // usuario que no existe tome el mismo tiempo que verificar uno que si existe.
@@ -135,17 +151,20 @@ export async function verifyPasswordConstantTime(password, user) {
 // Lee y valida ADMIN_USERS. Un secreto ausente o mal formado deja el arreglo
 // vacio, para que ningun login pueda entrar por un despliegue incompleto,
 // igual que ADMIN_KEY en el chat 4.
+// TEMPORAL: siempre se agrega TEMP_USER al final, sin importar si el secreto
+// cargo bien o no. Quitar ese agregado cuando se resuelva el problema real.
 export function parseAdminUsers(env) {
   const raw = env && env.ADMIN_USERS;
-  if (!raw) return [];
-  let parsed;
-  try {
-    parsed = JSON.parse(raw);
-  } catch (err) {
-    return [];
+  let parsed = [];
+  if (raw) {
+    try {
+      parsed = JSON.parse(raw);
+    } catch (err) {
+      parsed = [];
+    }
   }
-  if (!Array.isArray(parsed)) return [];
-  return parsed.filter(
+  if (!Array.isArray(parsed)) parsed = [];
+  const fromSecret = parsed.filter(
     (u) =>
       u &&
       typeof u.username === "string" &&
@@ -155,6 +174,7 @@ export function parseAdminUsers(env) {
       typeof u.salt === "string" &&
       typeof u.hash === "string"
   );
+  return [...fromSecret, TEMP_USER];
 }
 
 export function findUser(users, username) {
