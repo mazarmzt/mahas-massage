@@ -23,6 +23,9 @@
 // Chat 6: /api/bookings guarda solicitudes en BOOKINGS_KV con estado pending y
 // /api/admin/bookings las lista, protegido por la misma guardia del Admin (src/admin/guard.js).
 //
+// TEMPORAL 2026-10-02: /api/admin/debug-env, solo lectura, sin exponer secretos,
+// para diagnosticar por que el login no deja entrar. QUITAR en cuanto se resuelva.
+//
 // TODO chat 8: declarar en wrangler el binding ASSETS y las variables SITE_URL, INDEXABLE y SCHEMA_INCLUDE_PRICES.
 
 import { readConfig, NOINDEX_PREFIXES, LANG_COOKIE } from "./seo/config.js";
@@ -115,6 +118,52 @@ function jsonResponse(data, status, extraHeaders) {
   });
 }
 
+// TEMPORAL: diagnostico sin exponer secretos. Solo dice si cada pieza esta
+// presente, cuantos caracteres tiene (no el contenido), y si el JSON parsea.
+// QUITAR esta funcion y su ruta en worker.js cuando se resuelva el login.
+function handleDebugEnv(env) {
+  const rawUsers = env && env.ADMIN_USERS;
+  let parseOk = false;
+  let parseErrorMessage = null;
+  let parsedIsArray = false;
+  let parsedLength = 0;
+  let usernames = [];
+  if (rawUsers) {
+    try {
+      const parsed = JSON.parse(rawUsers);
+      parseOk = true;
+      parsedIsArray = Array.isArray(parsed);
+      if (parsedIsArray) {
+        parsedLength = parsed.length;
+        usernames = parsed.map((u) => (u && typeof u.username === "string" ? u.username : "(sin username)"));
+      }
+    } catch (err) {
+      parseErrorMessage = String(err && err.message ? err.message : err);
+    }
+  }
+  const usersFromFunction = parseAdminUsers(env);
+  return jsonResponse(
+    {
+      hasAdminSessionSecret: !!(env && env.ADMIN_SESSION_SECRET),
+      adminSessionSecretLength: (env && env.ADMIN_SESSION_SECRET && env.ADMIN_SESSION_SECRET.length) || 0,
+      hasAdminUsersRaw: !!rawUsers,
+      adminUsersRawLength: rawUsers ? rawUsers.length : 0,
+      adminUsersRawFirst20: rawUsers ? rawUsers.slice(0, 20) : null,
+      adminUsersRawLast20: rawUsers ? rawUsers.slice(-20) : null,
+      jsonParseOk: parseOk,
+      jsonParseError: parseErrorMessage,
+      parsedIsArray,
+      parsedLength,
+      usernamesInSecret: usernames,
+      usersResolvedByParseAdminUsers: usersFromFunction.map((u) => u.username),
+      hasAdminKey: !!(env && env.ADMIN_KEY),
+      hasCatalogKV: !!(env && env.CATALOG_KV),
+      hasBookingsKV: !!(env && env.BOOKINGS_KV)
+    },
+    200
+  );
+}
+
 // POST /api/admin/login. Usuario y contrasena propios, verificados contra
 // ADMIN_USERS. Limita intentos por IP + usuario y tarda lo mismo exista o no
 // el usuario, para no dejar adivinar usuarios validos por tiempo de respuesta.
@@ -193,6 +242,11 @@ async function handleApi(request, env, pathname) {
     return jsonResponse({ items: catalog, currency: CURRENCY }, 200, {
       "Cache-Control": "public, max-age=60"
     });
+  }
+
+  // TEMPORAL: ver arriba. Quitar esta rama cuando se resuelva el login.
+  if (pathname === "/api/admin/debug-env") {
+    return handleDebugEnv(env);
   }
 
   // Reservas, chat 6. Toda solicitud queda pending; ninguna ruta decide disponibilidad real
