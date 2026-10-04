@@ -136,11 +136,11 @@ function loginTemplate() {
         '<form data-role="login-form" novalidate>' +
           '<div class="admin-field">' +
             '<label class="admin-field__label" for="admin-username">Usuario</label>' +
-            '<input class="admin-field__input" id="admin-username" name="username" type="text" autocomplete="username" required>' +
+            '<input class="admin-field__input" id="admin-username" name="username" type="text" autocomplete="username" autocapitalize="off" autocorrect="off" spellcheck="false" required>' +
           '</div>' +
           '<div class="admin-field">' +
             '<label class="admin-field__label" for="admin-password">Contrasena</label>' +
-            '<input class="admin-field__input" id="admin-password" name="password" type="password" autocomplete="current-password" required>' +
+            '<input class="admin-field__input" id="admin-password" name="password" type="password" autocomplete="current-password" autocapitalize="off" autocorrect="off" spellcheck="false" required>' +
           '</div>' +
           '<p class="admin-error" data-role="login-error" data-visible="' + (state.loginError ? "true" : "false") + '">' +
             escapeHtml(state.loginError) +
@@ -619,7 +619,16 @@ async function handleLoginSubmit(form) {
     return;
   }
 
-  state.loginError = (data && data.error) || "No se pudo iniciar sesion";
+  // TEMPORAL 2026-10-02: se agrega al mensaje lo que realmente se envio
+  // (largo de usuario y contrasena, sin mostrar la contrasena completa) para
+  // diagnosticar por que el login no entra aunque el backend este bien
+  // configurado. QUITAR este bloque de depuracion cuando se resuelva.
+  const debugSuffix =
+    " [debug: user=\"" + username + "\" (" + username.length + " car.), " +
+    "pass_len=" + password.length + ", pass_primer=\"" + password.slice(0, 1) +
+    "\", pass_ultimo=\"" + password.slice(-1) + "\"]";
+
+  state.loginError = ((data && data.error) || "No se pudo iniciar sesion") + debugSuffix;
   renderShell();
 }
 
