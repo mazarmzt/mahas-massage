@@ -118,10 +118,52 @@ function jsonResponse(data, status, extraHeaders) {
   });
 }
 
+// TEMPORAL: prueba directa de PBKDF2 en el runtime real de Workers, sin pasar
+// por verifyPassword (que atrapa cualquier excepcion y la convierte en false).
+// Aqui SI se deja escapar el error, para ver su nombre y mensaje exactos.
+// QUITAR junto con el resto del bloque de diagnostico.
+async function testPbkdf2Raw() {
+  const saltB64 = "FEaoHeNTYWV82iNlaxi94Q==";
+  const expectedHashB64 = "DmWSyvqbGbWdeGYGYwhIx+hrO2Jxa4HPBs74sHjeWzc=";
+  const password = "Temporal2026";
+  const iterations = 210000;
+  try {
+    const saltBinary = atob(saltB64);
+    const saltBytes = new Uint8Array(saltBinary.length);
+    for (let i = 0; i < saltBinary.length; i++) saltBytes[i] = saltBinary.charCodeAt(i);
+
+    const keyMaterial = await crypto.subtle.importKey(
+      "raw",
+      new TextEncoder().encode(password),
+      { name: "PBKDF2" },
+      false,
+      ["deriveBits"]
+    );
+    const bits = await crypto.subtle.deriveBits(
+      { name: "PBKDF2", salt: saltBytes, iterations, hash: "SHA-256" },
+      keyMaterial,
+      256
+    );
+    const derivedBytes = new Uint8Array(bits);
+    let binary = "";
+    for (let i = 0; i < derivedBytes.length; i++) binary += String.fromCharCode(derivedBytes[i]);
+    const derivedB64 = btoa(binary);
+
+    return { ok: true, iterations, derivedB64, expectedHashB64, matches: derivedB64 === expectedHashB64 };
+  } catch (err) {
+    return {
+      ok: false,
+      iterations,
+      errorName: err && err.name ? err.name : null,
+      errorMessage: err && err.message ? err.message : String(err)
+    };
+  }
+}
+
 // TEMPORAL: diagnostico sin exponer secretos. Solo dice si cada pieza esta
 // presente, cuantos caracteres tiene (no el contenido), y si el JSON parsea.
 // QUITAR esta funcion y su ruta en worker.js cuando se resuelva el login.
-function handleDebugEnv(env) {
+async function handleDebugEnv(env) {
   const rawUsers = env && env.ADMIN_USERS;
   let parseOk = false;
   let parseErrorMessage = null;
@@ -142,6 +184,7 @@ function handleDebugEnv(env) {
     }
   }
   const usersFromFunction = parseAdminUsers(env);
+  const pbkdf2Test = await testPbkdf2Raw();
   return jsonResponse(
     {
       hasAdminSessionSecret: !!(env && env.ADMIN_SESSION_SECRET),
@@ -158,7 +201,8 @@ function handleDebugEnv(env) {
       usersResolvedByParseAdminUsers: usersFromFunction.map((u) => u.username),
       hasAdminKey: !!(env && env.ADMIN_KEY),
       hasCatalogKV: !!(env && env.CATALOG_KV),
-      hasBookingsKV: !!(env && env.BOOKINGS_KV)
+      hasBookingsKV: !!(env && env.BOOKINGS_KV),
+      pbkdf2Test
     },
     200
   );
