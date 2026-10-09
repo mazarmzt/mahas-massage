@@ -6,6 +6,12 @@
 // src/admin/auth.js usa para verificar. Pegas el resultado en el arreglo del
 // secreto ADMIN_USERS, uno por persona.
 //
+// IMPORTANTE: 100000 es el maximo de iteraciones PBKDF2 que permite el
+// runtime de Cloudflare Workers; un valor mayor hace que la verificacion
+// falle siempre en produccion (aunque en Node, como aqui, no de ningun
+// error). No subir este numero sin subir tambien PBKDF2_ITERATIONS_DEFAULT
+// en src/admin/auth.js, y sin quedar por debajo de ese limite.
+//
 // Uso, contrasena como argumento (mas simple, queda un momento en el
 // historial de la terminal):
 //   node scripts/hash-password.mjs unaContrasenaLarga
@@ -15,7 +21,7 @@
 
 import { randomBytes, pbkdf2Sync } from "node:crypto";
 
-const ITERATIONS = 210000;
+const ITERATIONS = 100000;
 const KEY_LENGTH_BYTES = 32;
 
 async function readPasswordFromStdin() {
