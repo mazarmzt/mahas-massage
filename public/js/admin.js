@@ -619,16 +619,7 @@ async function handleLoginSubmit(form) {
     return;
   }
 
-  // TEMPORAL 2026-10-02: se agrega al mensaje lo que realmente se envio
-  // (largo de usuario y contrasena, sin mostrar la contrasena completa) para
-  // diagnosticar por que el login no entra aunque el backend este bien
-  // configurado. QUITAR este bloque de depuracion cuando se resuelva.
-  const debugSuffix =
-    " [debug: user=\"" + username + "\" (" + username.length + " car.), " +
-    "pass_len=" + password.length + ", pass_primer=\"" + password.slice(0, 1) +
-    "\", pass_ultimo=\"" + password.slice(-1) + "\"]";
-
-  state.loginError = ((data && data.error) || "No se pudo iniciar sesion") + debugSuffix;
+  state.loginError = (data && data.error) || "No se pudo iniciar sesion";
   renderShell();
 }
 
